@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resolumeter", "Resolumeter\Resolumeter.csproj", "{533FF430-133C-42FF-8D8F-473A0A23010A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{533FF430-133C-42FF-8D8F-473A0A23010A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{533FF430-133C-42FF-8D8F-473A0A23010A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{533FF430-133C-42FF-8D8F-473A0A23010A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{533FF430-133C-42FF-8D8F-473A0A23010A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9283FDE6-71B1-41BB-AFD9-B1F877A3C73D}
+	EndGlobalSection
+EndGlobal
