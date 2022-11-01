@@ -1,33 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using DataLayer.DataAccess;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using DataLayer.Models;
-using Task = System.Threading.Tasks.Task;
+using Microsoft.AspNetCore.Mvc;
+using Resolumeter.Services;
 
 namespace Resolumeter.Pages
 {
-    public class IndexModel : PageModel
+    public class UserModel : PageModel
     {
-        private readonly DataLayer.DataAccess.ResolutionContext _context;
 
-        public IndexModel(DataLayer.DataAccess.ResolutionContext context)
+        [BindProperty]
+        public new User User { get; set; } = default!;
+
+
+        public IActionResult OnPost()
         {
-            _context = context;
-        }
-
-        public IList<User> User { get;set; } = default!;
-
-        public async Task OnGetAsync()
-        {
-            if (_context.Users != null)
+            if (!ModelState.IsValid)
             {
-                User = await _context.Users.ToListAsync();
+                return Page();
             }
+
+            UserService.Add(User);
+
+            return RedirectToPage("./User");
         }
     }
 }

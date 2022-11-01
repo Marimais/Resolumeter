@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resolumeter", "Resolumeter\Resolumeter.csproj", "{533FF430-133C-42FF-8D8F-473A0A23010A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resolumeter", "Resolumeter\Resolumeter.csproj", "{533FF430-133C-42FF-8D8F-473A0A23010A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
