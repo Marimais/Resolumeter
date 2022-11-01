@@ -10,10 +10,7 @@ namespace DataLayer.Models
 {
     public class User
     {
-        public User()
-        {
 
-        }
         public User(string email, string password, string? firstName, string? lastName)
         {
             Email = email;
@@ -36,7 +33,7 @@ namespace DataLayer.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        public virtual List<Resolution> Resolutions { get; set; }
+        public virtual List<Resolution>? Resolutions { get; set; }
 
     }
 }
