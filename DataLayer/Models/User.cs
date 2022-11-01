@@ -11,14 +11,6 @@ namespace DataLayer.Models
     public class User
     {
 
-        public User(string email, string password, string? firstName, string? lastName)
-        {
-            Email = email;
-            Password = password;
-            FirstName = firstName;
-            LastName = lastName;
-        }
-
         [Key]
         public int Id { get; set; }
         [MaxLength(50)]
