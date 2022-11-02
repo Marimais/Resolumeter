@@ -8,12 +8,12 @@ namespace Resolumeter.Services
     {
         readonly static ResolutionContext _context = new();
 
-        public static User GetUser(string email)
+        public static User GetUser(User user)
         {
             try
             {
                 _context.Database.EnsureCreated();
-                return _context.Users!.FirstOrDefault(x => x.Email == email)!;
+                return _context.Users!.FirstOrDefault(x => x.Email == user.Email && x.Password==user.Password)!;
             }
             catch(Exception ex)
             {
