@@ -21,7 +21,7 @@ namespace Resolumeter.Pages
 
             UserService.Add(User);
 
-            return RedirectToPage("./User");
+            return RedirectToPage("./login");
         }
     }
 }
