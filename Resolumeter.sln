@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resolumeter", "Resolumeter\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResoluApp", "ResoluApp\ResoluApp.csproj", "{1FA269EA-3DD4-4842-B67B-84B2E33B0AB2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE} = {14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +26,10 @@ Global
 		{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FA269EA-3DD4-4842-B67B-84B2E33B0AB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FA269EA-3DD4-4842-B67B-84B2E33B0AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FA269EA-3DD4-4842-B67B-84B2E33B0AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FA269EA-3DD4-4842-B67B-84B2E33B0AB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
