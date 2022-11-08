@@ -1,0 +1,52 @@
+﻿@page "/tasks"
+<h3>Tasks</h3>
+
+<ul>
+    @foreach (var task in _tasks)
+    {
+        <li>
+            <input type="checkbox" @bind="task.Status"/>
+            <input @bind="task.Name"/>
+        </li>
+    }
+</ul>
+
+<input placeholder="Task" @bind="_taskName"/>
+<input @bind="_description"/>
+<input type="date" @bind="_startDate"/>
+<input type="date" @bind="_endDate" />
+<select @bind="_status">
+    @foreach (var status in Enum.GetValues(typeof(DataLayer.Models.Status)))
+    {
+        <option>@status</option>
+    }    
+</select>
+<button @onclick="AddTask">Create</button>
+
+@code {
+    private List<DataLayer.Models.Task> _tasks = new();
+    private string? _taskName;
+    private string? _description;
+    private DateTime _startDate;
+    private DateTime _endDate;
+    private DataLayer.Models.Status _status; 
+
+    private void AddTask()
+    {
+        if(!string.IsNullOrWhiteSpace(_taskName))
+        {
+            _tasks.Add(new DataLayer.Models.Task() {
+                    Name = _taskName,
+                    Description = _description,
+                    StartDate = _startDate,
+                    EndDate = _endDate,
+                    Status=_status});
+
+            _taskName = string.Empty;
+            _description = string.Empty;
+            _startDate = DateTime.Now;
+            _endDate = DateTime.Now;
+            _status = DataLayer.Models.Status.Started;
+        }
+    }
+}
