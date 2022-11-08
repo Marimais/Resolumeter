@@ -1,13 +1,9 @@
 ﻿@page "/login"
-@using DataLayer.Models
-@using Services
+@using Task=System.Threading.Tasks.Task
 <h3>Login</h3>
 
 <form>
     <div class="flex-column">
-        <div>
-            <textarea>@_message</textarea>
-        </div>
         <div>
             <input type="email" placeholder="Email" @bind="_email"/>
         </div>
@@ -17,6 +13,7 @@
         <div>
             <button @onclick="LogIn">Log In</button>
         </div>
+        <p>@_message</p>
     </div>
 </form>
 
@@ -40,5 +37,7 @@
         _email = string.Empty;
         _password = string.Empty;
     }
+
+
 
 }
