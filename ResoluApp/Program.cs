@@ -63,11 +63,10 @@ app.UseStaticFiles();
 
 
 app.UseRouting();
-
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapBlazorHub();
+app.MapFallbackToPage("/_Host");
 
 app.Run();
