@@ -1,0 +1,44 @@
+﻿@page "/login"
+@using DataLayer.Models
+@using Services
+<h3>Login</h3>
+
+<form>
+    <div class="flex-column">
+        <div>
+            <textarea>@_message</textarea>
+        </div>
+        <div>
+            <input type="email" placeholder="Email" @bind="_email"/>
+        </div>
+        <div>
+            <input type="password" placeholder="Password" @bind="_password"/>
+        </div>
+        <div>
+            <button @onclick="LogIn">Log In</button>
+        </div>
+    </div>
+</form>
+
+@code {
+    private static string? _email;
+    private static string? _password;
+    private static string _message = "Please enter credentials!";
+
+    public User? User { get; set; }
+
+    private void LogIn()
+    {
+        User _user = new()
+            {
+                Email = _email,
+                Password = _password
+            };
+
+        User=UserService.GetUser(_user);
+        _message = $"Hello {User.FirstName}!";
+        _email = string.Empty;
+        _password = string.Empty;
+    }
+
+}
