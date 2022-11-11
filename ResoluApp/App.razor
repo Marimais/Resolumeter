@@ -1,4 +1,4 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿<Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="@assemblies">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -10,3 +10,8 @@
         </LayoutView>
     </NotFound>
 </Router>
+@code{
+    public List<System.Reflection.Assembly> assemblies = new List<System.Reflection.Assembly>{
+        typeof(AuthApp.Router).Assembly
+    };
+}
