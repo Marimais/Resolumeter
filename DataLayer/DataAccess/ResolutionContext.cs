@@ -1,14 +1,15 @@
 ﻿using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Task = DataLayer.Models.Task;
+
 
 namespace DataLayer.DataAccess
 {
-    public class ResolutionContext : DbContext
+    public class ResolutionContext : IdentityDbContext
     {
-        public ResolutionContext() : base()
+        public ResolutionContext(DbContextOptions<ResolutionContext> dbContextOptions) : base(dbContextOptions)
         {
 
         }
