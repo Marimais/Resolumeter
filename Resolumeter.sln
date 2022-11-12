@@ -10,8 +10,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResoluApp", "ResoluApp\Reso
 		{14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE} = {14F55DEB-7AE1-46D0-99C7-D69AEFBAA2CE}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthApp", "AuthApp\AuthApp.csproj", "{23D53B04-614B-4C74-B464-8B890C88CB9A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,10 +24,6 @@ Global
 		{1FA269EA-3DD4-4842-B67B-84B2E33B0AB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FA269EA-3DD4-4842-B67B-84B2E33B0AB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FA269EA-3DD4-4842-B67B-84B2E33B0AB2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23D53B04-614B-4C74-B464-8B890C88CB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23D53B04-614B-4C74-B464-8B890C88CB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23D53B04-614B-4C74-B464-8B890C88CB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23D53B04-614B-4C74-B464-8B890C88CB9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
