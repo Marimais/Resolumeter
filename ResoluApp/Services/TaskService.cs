@@ -4,17 +4,18 @@ using Task = DataLayer.Models.Task;
 
 namespace ResoluApp.Services
 {
-    public static class TaskService
+    public class TaskService : ITaskService
     {
-        private static readonly ResolutionContext _context=new();
+        private readonly ResolutionContext _context;
 
-        public static List<Task> GetAll()
+        public TaskService(ResolutionContext context)
         {
-            _context.Database.EnsureCreated();
-            return _context.Tasks!.ToList();
+            _context = context;
         }
 
-        
-
+        public List<Task> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
