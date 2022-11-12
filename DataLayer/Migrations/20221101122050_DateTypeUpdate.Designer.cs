@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataLayer.Migrations
 {
-    [DbContext(typeof(ResolutionContext))]
+    [DbContext(typeof(ResolutionDBContext))]
     [Migration("20221101122050_DateTypeUpdate")]
     partial class DateTypeUpdate
     {
