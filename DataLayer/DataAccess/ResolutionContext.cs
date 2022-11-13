@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Task = DataLayer.Models.Task;
-
+using Microsoft.AspNetCore.Identity;
 
 namespace DataLayer.DataAccess
 {
-    public class ResolutionContext : IdentityDbContext
+    public class ResolutionDBContext : IdentityDbContext
     {
-        public ResolutionContext(DbContextOptions<ResolutionContext> dbContextOptions) : base(dbContextOptions)
+        public ResolutionDBContext(DbContextOptions<ResolutionDBContext> dbContextOptions) : base(dbContextOptions)
         {
 
         }
@@ -18,7 +18,7 @@ namespace DataLayer.DataAccess
         public DbSet<Goal>? Goals { get; set; }
         public DbSet<Dream>? Dreams { get; set; }
         public DbSet<Resolution>? Resolutions { get; set; }
-        public DbSet<User>? Users { get; set; }
+        public new DbSet<User>? Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,5 +32,11 @@ namespace DataLayer.DataAccess
                 optionsBuilder.UseSqlServer(connectionString);
             }
         }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+         }
     }
 }
