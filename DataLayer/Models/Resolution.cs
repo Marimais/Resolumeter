@@ -7,6 +7,8 @@ namespace DataLayer.Models
     {
         [Key]
         public int Id { get; set; }
+        [Required] 
+        public string UserName { get; set; } = string.Empty;
         [Required]
         public DateTime Year { get; set; }
         [Required]

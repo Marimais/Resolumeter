@@ -18,7 +18,6 @@ namespace DataLayer.DataAccess
         public DbSet<Goal>? Goals { get; set; }
         public DbSet<Dream>? Dreams { get; set; }
         public DbSet<Resolution>? Resolutions { get; set; }
-        public new DbSet<User>? Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
