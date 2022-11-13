@@ -15,6 +15,6 @@ namespace DataLayer.Models
 
         [Required]
         public virtual Status Status { get; set; } = Status.Started;
-        public virtual List<Task>? Tasks { get; set; }
+        public virtual Resolution? Resolution { get; set; }
     }
 }

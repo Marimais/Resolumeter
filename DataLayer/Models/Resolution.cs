@@ -11,8 +11,6 @@ namespace DataLayer.Models
         public string UserName { get; set; } = string.Empty;
         [Required]
         public DateTime Year { get; set; }
-        [Required]
-        public virtual List<Goal> Goals { get; set; } = default!;
-        public virtual List<Dream>? Dreams { get; set; }
+        
     }
 }

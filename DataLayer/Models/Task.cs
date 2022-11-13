@@ -17,5 +17,6 @@ namespace DataLayer.Models
 
         [Required]
         public virtual Status Status { get; set; } = Status.Started;
+        public virtual Goal Goal { get; set; }
     }
 }
