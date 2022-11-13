@@ -5,7 +5,7 @@ namespace ResoluApp.Services
 {
     public static class UserService
     {
-        readonly static ResolutionContext _context;
+        readonly static ResolutionDBContext _context;
 
         public static User GetUser(User user)
         {

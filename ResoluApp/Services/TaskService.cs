@@ -6,9 +6,9 @@ namespace ResoluApp.Services
 {
     public class TaskService : ITaskService
     {
-        private readonly ResolutionContext _context;
+        private readonly ResolutionDBContext _context;
 
-        public TaskService(ResolutionContext context)
+        public TaskService(ResolutionDBContext context)
         {
             _context = context;
         }
