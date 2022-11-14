@@ -8,10 +8,15 @@
     --pinky: #FCB59F;
     --redish: #FA8E8B;
     --gold-glitter: #DFB722;
+    --light-golden:#F7EF8A;
+    --metalic-golden:#D4AF37;
+    --dark-golden:#D2AC47;
+    --mid-golden:#EDC967;
+
 }
 
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: cursive, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background-color: var(--yellowy);
 }
 
@@ -79,8 +84,8 @@ a, .btn-link {
     position: fixed;
     left: 0;
     width: 20%;
-    top: 10%;
-    height: 80%;
+    top: 15%;
+    height: 75%;
     font-weight: 900;
 }
 
@@ -89,9 +94,8 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    height:10%;
+    height:15%;
     background-color: var(--greish);
-    color: var(--gold-glitter);
 }
 
 .footer {
@@ -103,4 +107,30 @@ header {
     background-color: var(--greish);
     color: var(--gold-glitter);
     text-align: center;
+}
+
+.pink-glow {
+    font-size: 60px;
+    color: #fff;
+    text-align: center;
+    animation: pink-glow 1s ease-in-out infinite alternate;
+}
+
+
+.golden-glow {
+    font-size: 50px;
+    color: var(--yellowy);
+    text-align: center;
+    animation: golden-glow 1s ease-in-out infinite alternate;
+    
+}
+
+@-webkit-keyframes golden-glow {
+    from {
+        text-shadow: 0 0 10px var(--yellowy), 0 0 20px var(--yellowy), 0 0 30px var(--light-golden), 0 0 40px var(--light-golden), 0 0 50px var(--light-golden), 0 0 60px var(--light-golden), 0 0 70px var(--light-golden);
+    }
+
+    to {
+        text-shadow: 0 0 20px var(--yellowy), 0 0 30px var(--dark-golden), 0 0 40px var(--dark-golden), 0 0 50px var(--dark-golden);
+    }
 }
