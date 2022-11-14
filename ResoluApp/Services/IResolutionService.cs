@@ -4,9 +4,9 @@ namespace ResoluApp.Services
 {
     public interface IResolutionService
     {
-        void Create(string userName, string year);
+        void Create(string userName, int year);
         public List<Resolution> GetAll(string userName);
-        public Resolution Get(string userName, string year);
-        public void Delete(string userName, string year);
+        public Resolution Get(string userName, int year);
+        public void Delete(string userName, int year);
     }
 }

@@ -2,9 +2,14 @@ using DataLayer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using ResoluApp.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Components.Authorization;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 var connectionString = builder.Configuration.GetConnectionString("ResolumeterContext") ?? throw new InvalidOperationException("Connection string 'ResolumeterContext' not found.");
 
 // Add services to the container.
@@ -12,6 +17,7 @@ builder.Services.AddDbContext<ResolutionDBContext>(options => options.UseSqlServ
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ResolutionDBContext>();
+
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -38,6 +44,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<IResolutionService, ResolutionService>();
 
 
 var app = builder.Build();

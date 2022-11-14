@@ -10,20 +10,20 @@ namespace ResoluApp.Services
         private readonly ResolutionDBContext _context;
         private readonly ILogger _logger;
 
-        public ResolutionService(ResolutionDBContext context, ILogger logger)
+        public ResolutionService(ResolutionDBContext context, ILogger<ResolutionService> logger)
         {
             _context = context;
             _logger = logger;
         }
 
-        public void Create(string userName, string year)
+        public void Create(string userName, int year)
         {
             try
             {
                 Resolution resolution = new()
                 {
                     UserName = userName,
-                    Year = new DateTime(int.Parse(year), 1, 1)
+                    Year = new DateTime(year, 1, 1)
                 };
 
                 _context.Resolutions!.Add(resolution);
@@ -51,12 +51,12 @@ namespace ResoluApp.Services
             return resolutions;
         }
 
-        public Resolution Get(string userName, string year)
+        public Resolution Get(string userName, int year)
         {
             Resolution resolution=default!;
             try
             {
-                DateTime date= DateTime.Parse(year);
+                DateTime date= new DateTime(year, 1, 1);
                 resolution = _context.Resolutions!.First(a => a.UserName == userName && a.Year == date);
             }
             catch (Exception ex)
@@ -66,11 +66,11 @@ namespace ResoluApp.Services
             return resolution?? default!; 
         }
 
-        public void Delete(string userName, string year) 
+        public void Delete(string userName, int year) 
         {
             try
             {
-                DateTime date= DateTime.Parse(year);
+                DateTime date= new DateTime(year, 1, 1);
                 Resolution resolution = _context.Resolutions!.First(a => a.UserName == userName && a.Year == date);
                 _context.Remove(resolution);
                 _context.SaveChanges();

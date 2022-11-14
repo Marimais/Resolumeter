@@ -1,0 +1,29 @@
+﻿@page "/Resolution"
+@using Task=System.Threading.Tasks.Task
+@inject AuthenticationStateProvider GetAuthenticationStateAsync
+@inject IResolutionService  ResolutionService
+<h3>Resolution</h3>
+
+<form>
+    <input placeholder="Year" type="month" @bind="_year"/>
+    <button @onclick="CreateResolution">Create New</button>
+</form>
+
+@code {
+    private DateTime _year { get; set; } = DateTime.Now;
+    private string _userName { get; set; } = string.Empty;
+    private int _currentYear = DateTime.Now.Year;
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        var authstate = await GetAuthenticationStateAsync.GetAuthenticationStateAsync();
+        var user = authstate.User;
+        _userName = user.Identity!.Name!;
+    }
+
+    private void CreateResolution()
+    {
+        ResolutionService.Create(_userName, _year.Year);
+    }
+}
