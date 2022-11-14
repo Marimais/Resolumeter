@@ -109,13 +109,12 @@ header {
     text-align: center;
 }
 
-.pink-glow {
-    font-size: 60px;
-    color: #fff;
-    text-align: center;
-    animation: pink-glow 1s ease-in-out infinite alternate;
+.main {
+    position: fixed;
+    left: 20%;
+    top: 15%;
+    height: 75%;
 }
-
 
 .golden-glow {
     font-size: 50px;
