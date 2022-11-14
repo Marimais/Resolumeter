@@ -1,26 +1,13 @@
 ﻿@inherits LayoutComponentBase
-@inject NavigationManager UriHelper
 
 <PageTitle>@_title</PageTitle>
 
-<nav class="flex items-center justify-between flex-wrap bg-black p-6 my-bar">
-    <div class="flex items-center flex-shrink-0 text-white mr-6">
-        <span class="font-semibold text-xl tracking-tight">@_title</span>
-    </div>
-    <! -- more html left out for brevity -->
-</nav>
-
 <div class="page">
-    <div class="sidebar">
+    <div class="side_bar">
         <NavMenu />
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-            
-        </div>
-        
         <article class="content px-4">
             @Body
         </article>
