@@ -8,21 +8,21 @@
     --pinky: #FCB59F;
     --redish: #FA8E8B;
     --gold-glitter: #DFB722;
-    --light-golden:#F7EF8A;
-    --metalic-golden:#D4AF37;
-    --dark-golden:#D2AC47;
-    --mid-golden:#EDC967;
-    --old-bronze:#9F7A34;
-
+    --light-golden: #F7EF8A;
+    --metalic-golden: #D4AF37;
+    --dark-golden: #D2AC47;
+    --mid-golden: #EDC967;
+    --old-bronze: #9F7A34;
+    --dirty-gold: #926F34;
 }
 
 html, body {
     font-family: cursive, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     height: 100%;
     width: 100%;
-    background-color: var(--yellowy);
-    background-image:url(Target.png);
-    background-repeat:no-repeat;    
+    background-color: var(--sorta_beige);
+    background-image: url(Target.png);
+    background-repeat: no-repeat;
 }
 
 h1:focus {
@@ -94,6 +94,7 @@ a, .btn-link {
     font-size: 20px;
     font-weight: 900;
     backdrop-filter: blur(20px);
+    
 }
 
 header {
@@ -103,7 +104,7 @@ header {
     width: 100%;
     height: 10%;
     color: var(--yellowy);
-    background: linear-gradient(to left, var(--greish),transparent);
+    background: linear-gradient(to left,var(--dirty-gold) ,transparent);
     background-size: 400% 400%;
     animation: gradient 30s ease infinite;
     backdrop-filter: blur(20px);
@@ -115,7 +116,7 @@ header {
     }
 
     50% {
-        background-position: 100% 50%;
+        background-position: 100% 30%;
     }
 
     100% {
@@ -129,12 +130,12 @@ header {
     bottom: 0;
     top: 90%;
     width: 100%;
-    background: linear-gradient(to left, var(--greish),transparent);
+    background: linear-gradient(to left, var(--dirty-gold),transparent);
     color: var(--gold-glitter);
     text-align: center;
-    animation: gradient 30s ease infinite;
     backdrop-filter: blur(20px);
 }
+
 
 .main-box {
     position: fixed;
@@ -150,13 +151,13 @@ header {
     font-size: 50px;
     color: var(--yellowy);
     text-align: center;
-    animation: golden-glow 1s ease-in-out infinite alternate;
+    animation: golden-glow 20s ease-in-out infinite alternate;
     
 }
 
 @-webkit-keyframes golden-glow {
     from {
-        text-shadow: 0 0 10px var(--yellowy), 0 0 20px var(--yellowy), 0 0 30px var(--light-golden), 0 0 40px var(--light-golden), 0 0 50px var(--light-golden), 0 0 60px var(--light-golden), 0 0 70px var(--light-golden);
+        text-shadow: 0 0 10px var(--yellowy), 0 0 20px var(--yellowy), 0 0 30px var(--mid-golden), 0 0 40px var(--mid-golden), 0 0 50px var(--mid-golden), 0 0 60px var(--mid-golden), 0 0 70px var(--mid-golden);
     }
 
     to {
@@ -314,4 +315,47 @@ a:hover {
 
     .circle-line2 {
         transform: rotate(0);
+    }
+
+.rounded-input {
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 0 0 5px;
+}
+
+.input-box {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: var(--dark-golden);
+    border-radius: 3px;
+    padding: 70px 100px;
+    margin-bottom: 25px;
+}
+
+.input-box label {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 16px;
+    color: #fff;
+    pointer-event: none;
+    transition: all 0.5s ease-in-out;
+}
+
+.input-box input {
+    border: 0;
+    border-bottom: 1px solid #555;
+    background: transparent;
+    width: 100%;
+    padding: 8px 0 5px 0;
+    font-size: 16px;
+    color: #fff;
+}
+
+    .input-box input:focus {
+        border: none;
+        outline: none;
+        border-bottom: 1px solid #e74c3c;
     }

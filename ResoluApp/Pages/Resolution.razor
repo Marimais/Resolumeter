@@ -2,11 +2,10 @@
 @using Task=System.Threading.Tasks.Task
 @inject AuthenticationStateProvider GetAuthenticationStateAsync
 @inject IResolutionService  ResolutionService
-<h3>Resolution</h3>
 
 <form>
     <input placeholder="Year" type="month" @bind="_year"/>
-    <button class="circle circle-background circle-foreground circle-line circle-line2" @onclick="CreateResolution">+</button>
+    <button class="btn-sign" @onclick="CreateResolution">Create</button>
 </form>
 
 @code {
