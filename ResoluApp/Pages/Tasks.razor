@@ -1,28 +1,31 @@
 ﻿@page "/tasks"
 @attribute [Authorize]
 <h3>Tasks</h3>
-
-<ul>
+<div class="class="input-box">
+    <ul>
     @foreach (var task in _tasks)
     {
         <li>
-            <input type="checkbox" @bind="task.Status"/>
+            <input type="checkbox" @bind="task.Status" />
             <input @bind="task.Name"/>
         </li>
     }
-</ul>
-
-<input placeholder="Task" @bind="_taskName" class="rounded-input"/>
-<input @bind="_description"/>
-<input type="date" @bind="_startDate"/>
-<input type="date" @bind="_endDate" />
-<select @bind="_status">
-    @foreach (var status in Enum.GetValues(typeof(DataLayer.Models.Status)))
-    {
-        <option>@status</option>
-    }    
-</select>
+    </ul>
+    <input placeholder="Task" @bind="_taskName" class="rounded-input"/>
+    <input @bind="_description"/>
+    <input type="date" @bind="_startDate"/>
+    <input type="date" @bind="_endDate" />
+    <select @bind="_status">
+        @foreach (var status in Enum.GetValues(typeof(DataLayer.Models.Status)))
+        {
+            <option>@status</option>
+        }    
+    </select>
 <button @onclick="AddTask">Create</button>
+</div>
+
+
+
 
 @code {
     private List<DataLayer.Models.Task> _tasks = new();
