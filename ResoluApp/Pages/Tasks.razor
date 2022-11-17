@@ -1,16 +1,17 @@
 ﻿@page "/tasks"
 @attribute [Authorize]
 <h3>Tasks</h3>
-<div class="class="input-box">
+<div class="input-box">
     <ul>
     @foreach (var task in _tasks)
     {
         <li>
-            <input type="checkbox" @bind="task.Status" />
+            <input type="checkbox" @bind="task.Status" class="option-input" />
             <input @bind="task.Name"/>
         </li>
     }
     </ul>
+
     <input placeholder="Task" @bind="_taskName" class="rounded-input"/>
     <input @bind="_description"/>
     <input type="date" @bind="_startDate"/>

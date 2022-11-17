@@ -1,4 +1,5 @@
 ﻿@page "/Resolution"
+@attribute [Authorize]
 @using Task=System.Threading.Tasks.Task
 @inject AuthenticationStateProvider GetAuthenticationStateAsync
 @inject IResolutionService  ResolutionService
