@@ -258,7 +258,7 @@ a:hover {
     align-items: center;
 }
 
-.circle {
+.btn-circle {
     height: 124px;
     width: 124px;
     background-color: transparent;
@@ -269,14 +269,14 @@ a:hover {
     font-size: 50px;
     font-weight: bold;
 }
-    .circle-background
+    .btn-circle-background
     {
         fill: transparent;
         stroke: #1abc9c;
         transition: all 200ms ease;
     }
 
-    .circle-foreground {
+    .btn-circle-foreground {
         fill: transparent;
         stroke-dasharray: 377;
         stroke-dashoffset: 377;
@@ -286,35 +286,35 @@ a:hover {
         transition: all 800ms ease;
     }
 
-    .circle-line {
+    .btn-circle-line {
         stroke-width: 2;
         stroke: #1abc9c;
         transform-origin: 50% 50%;
         transition: all 500ms ease;
     }
 
-    .circle-line2 {
+    .btn-circle-line2 {
         transform: rotate(-90deg);
     }
 
-    .circle:hover {
+    .btn-circle:hover {
         cursor: pointer;
     }
-    .circle-background:hover {
+    .btn-circle-background:hover {
         stroke: transparent;
     }
 
-    .circle-foreground:hover {
+    .btn circle-foreground:hover {
         stroke-dashoffset: 0;
         transform: rotate(-90deg);
     }
 
-    .circle-line:hover {
+    .btn-circle-line:hover {
         stroke: #EE3769;
         transform: rotate(180deg);
     }
 
-    .circle-line2 {
+    .btn-circle-line2 {
         transform: rotate(0);
     }
 
