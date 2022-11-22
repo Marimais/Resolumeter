@@ -8,7 +8,7 @@ namespace ResoluApp.Services
         private readonly ResolutionDBContext _dbContext;
         private readonly ILogger _logger;
 
-        public GoalService(ResolutionDBContext context, ILogger logger)
+        public GoalService(ResolutionDBContext context, ILogger<GoalService> logger)
         {
             _dbContext = context;
             _logger = logger;

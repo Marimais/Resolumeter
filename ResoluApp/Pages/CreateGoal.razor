@@ -6,14 +6,15 @@
 
 <form>
     <div class="input-box">
-        <input placeholder="Goal Name" @bind="name"/>
+        <input placeholder="Name" @bind="name"/>
         <input placeholder="Description" @bind="description"/>
         <input placeholder="Deadline" @bind="endDate"/>
-        <select placeholder="Resolution Year" @bind="resolution">
+       
+        <select @bind="resolutionYear">
             @foreach (var resolution in resolutions)
             {
                 <option>
-                    @resolution.Year
+                    @resolution.Year.Year
                 </option>
             }
         </select>
@@ -25,6 +26,7 @@
     private string name { get; set; } = string.Empty;
     private string description { get; set; } = string.Empty;
     private Resolution resolution { get; set; } = default!;
+    private string resolutionYear;
     private DateTime endDate { get; set; }
     private List<Resolution> resolutions { get; set; } = default!;
 

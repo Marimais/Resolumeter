@@ -1,6 +1,6 @@
 ﻿@page "/tasks"
 @attribute [Authorize]
-<h3>Tasks</h3>
+
 <div class="input-box">
     <ul>
     @foreach (var task in _tasks)
@@ -12,17 +12,17 @@
     }
     </ul>
 
-    <input placeholder="Task" @bind="_taskName" class="rounded-input"/>
-    <input @bind="_description"/>
-    <input type="date" @bind="_startDate"/>
-    <input type="date" @bind="_endDate" />
+    <input placeholder="Name" @bind="_taskName" />
+    <input placeholder="Description" @bind="_description"/>
+    <input placeholder="Start Date" type="date" @bind="_startDate"/>
+    <input placeholder="End Date" type="date" @bind="_endDate" />
     <select @bind="_status">
         @foreach (var status in Enum.GetValues(typeof(DataLayer.Models.Status)))
         {
             <option>@status</option>
         }    
     </select>
-<button @onclick="AddTask">Create</button>
+<button class="btn-sign" @onclick="AddTask">Create</button>
 </div>
 
 

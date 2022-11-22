@@ -10,7 +10,7 @@ namespace ResoluApp.Services
         private readonly ResolutionDBContext _context;
         private readonly ILogger _logger;
 
-        public TaskService(ResolutionDBContext context, ILogger logger)
+        public TaskService(ResolutionDBContext context, ILogger<TaskService> logger)
         {
             _context = context;
             _logger = logger;
