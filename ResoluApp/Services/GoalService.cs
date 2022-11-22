@@ -37,7 +37,7 @@ namespace ResoluApp.Services
             }
         }
 
-        public List<Goal> GetAll(Resolution resolution)
+        public List<Goal?> GetAll(Resolution resolution)
         {
             List<Goal> goals = new List<Goal>();
             try
@@ -51,11 +51,12 @@ namespace ResoluApp.Services
             return goals;
         }
 
-        public Goal Get(String name)
+        public Goal? Get(String name)
         {
+            var goal = null;
             try
             {
-                var goal = _dbContext.Goals!.FirstOrDefault(g => g.Name == name);
+                goal = _dbContext.Goals!.FirstOrDefault(g => g.Name == name);
 
             }
             catch (Exception ex)

@@ -9,15 +9,15 @@
         <input placeholder="Goal Name" @bind="name"/>
         <input placeholder="Description" @bind="description"/>
         <input placeholder="Deadline" @bind="endDate"/>
-        <InputSelect placeholder="Resolution Year" @bind="resolution">
+        <select placeholder="Resolution Year" @bind="resolution">
             @foreach (var resolution in resolutions)
             {
                 <option>
                     @resolution.Year
                 </option>
             }
-        </InputSelect>
-        <button class="btn-sign">Create</button>
+        </select>
+        <button class="btn-sign" @onclick="CreateNewGoal">Create</button>
     </div>
 </form>
 
@@ -28,7 +28,7 @@
     private DateTime endDate { get; set; }
     private List<Resolution> resolutions { get; set; } = default!;
 
-    private async override Task OnInitializedAsync()
+    protected async override System.Threading.Tasks.Task OnInitializedAsync()
     {
         var authenticationState = await AuthenticationState.GetAuthenticationStateAsync();
         var user = authenticationState.User;
@@ -36,7 +36,7 @@
         resolutions = ResolutionService.GetAll(username);
     }
 
-    private void CreateGoal()
+    private void CreateNewGoal()
     {
         GoalService.Create(resolution,name,description,endDate);
     }

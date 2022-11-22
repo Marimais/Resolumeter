@@ -1,4 +1,5 @@
 ﻿using DataLayer.Models;
+using Task = DataLayer.Models.Task;
 
 namespace ResoluApp.Services
 {
@@ -6,7 +7,7 @@ namespace ResoluApp.Services
     {
         void Create(Goal goal, string name, string? description, DateTime startDate, DateTime endDate);
         void Delete(DataLayer.Models.Task task);
-        DataLayer.Models.Task Get(string name);
-        List<DataLayer.Models.Task> GetAll(Goal goal);
+        Task? Get(string name);
+        List<Task?> GetAll(Goal goal);
     }
 }
