@@ -6,8 +6,8 @@
 
 <form>
     <div class="input-box">
-        <input placeholder="Name" @bind="name"/>
-        <input placeholder="Description" @bind="description"/>
+        <input placeholder="Name" @bind="_name"/>
+        <input placeholder="Description" @bind="_description"/>
         <input placeholder="Deadline" type="date" @bind="endDate"/>
        
         <select @bind="resolutionYear">
@@ -23,8 +23,8 @@
 </form>
 
 @code {
-    private string name { get; set; } = string.Empty;
-    private string description { get; set; } = string.Empty;
+    private string _name { get; set; } = string.Empty;
+    private string _description { get; set; } = string.Empty;
     private Resolution resolution { get; set; } = default!;
     private int resolutionYear;
     string? username;
@@ -43,6 +43,6 @@
     private void CreateNewGoal()
     {
         resolution = ResolutionService.Get(username!, resolutionYear);
-        GoalService.Create(resolution,name,description,endDate);
+        GoalService.Create(resolution,_name,_description,endDate);
     }
 }

@@ -1,20 +1,34 @@
 ﻿@page "/tasks"
 @attribute [Authorize]
+@inject AuthenticationStateProvider AuthenticationState
+@inject ITaskService TaskService
+@inject IGoalService GoalService
+@inject IResolutionService ResolutionService
 
-<div class="input-box">
+<form>
+    <div class="input-box">
 
     <input placeholder="Name" @bind="_taskName" />
     <input placeholder="Description" @bind="_description"/>
     <input placeholder="Start Date" type="date" @bind="_startDate"/>
     <input placeholder="End Date" type="date" @bind="_endDate" />
+
     <select @bind="_status">
         @foreach (var status in Enum.GetValues(typeof(DataLayer.Models.Status)))
         {
             <option>@status</option>
         }    
     </select>
-<button class="btn-sign" @onclick="AddTask">Create</button>
-</div>
+
+    <select value="@_goal">
+        @foreach (var goal in _goals)
+        {
+            <option value="@goal">@goal.Name</option>
+        }
+    </select>
+    <button class="btn-sign" @onclick="AddTask">Create</button>
+    </div>
+</form>
 
 
 
@@ -27,17 +41,29 @@
     private DateTime _endDate = DateTime.Now.Date;
     private DataLayer.Models.Status _status;
     private DateTime _currentDate = DateTime.Now.Date;
+    private Goal _goal { get; set; } = default!;
+    private List<Resolution> _resolutions { get; set; } = default!;
+    private List<Goal> _goals = new();
+
+    protected async override System.Threading.Tasks.Task OnInitializedAsync()
+    {
+        var authenticationState = await AuthenticationState.GetAuthenticationStateAsync();
+        var user = authenticationState.User;
+        string? username = user!.Identity!.Name;
+        if (username is not null)
+            _resolutions = ResolutionService.GetAll(username);
+
+        foreach(var resolution in _resolutions)
+        {
+            _goals.AddRange(GoalService.GetAll(resolution)!);
+        }
+    }
 
     private void AddTask()
     {
         if(!string.IsNullOrWhiteSpace(_taskName))
         {
-            _tasks.Add(new DataLayer.Models.Task() {
-                    Name = _taskName,
-                    Description = _description,
-                    StartDate = _startDate,
-                    EndDate = _endDate,
-                    Status=_status});
+            TaskService.Create(_goal, _taskName, _description, _startDate, _endDate, _status);
 
             _taskName = string.Empty;
             _description = string.Empty;

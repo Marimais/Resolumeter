@@ -5,7 +5,7 @@ namespace ResoluApp.Services
 {
     public interface ITaskService
     {
-        void Create(Goal goal, string name, string? description, DateTime startDate, DateTime endDate);
+        void Create(Goal goal, string name, string? description, DateTime startDate, DateTime endDate, Status status);
         void Delete(DataLayer.Models.Task task);
         Task? Get(string name);
         List<Task>? GetAll(Goal goal);
