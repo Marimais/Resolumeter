@@ -11,3 +11,13 @@
         <button class="btn-circle btn-circle-background btn-circle-foreground btn-circle-line btn-circle-line2">＋</button>
     </a>
 </div>
+
+   @* <ul>
+    @foreach (var task in _tasks)
+    {
+            <li>
+                <input @bind="task.Status" class="option-input" />
+                <input @bind="task.Name"/>
+            </li>
+    }
+    </ul>*@

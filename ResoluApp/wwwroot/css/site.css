@@ -339,15 +339,18 @@ a:hover {
     padding: 7em 10em;
     margin-bottom: 2.5em;
 }
-
-.input-box label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 1.6em;
-    color: white;
-    transition: all 0.5s ease-in-out;
+.input-box h2{
+    text-align:center;
+    color: var(--sorta_beige);
+    font-size: 2em;
 }
+
+    .input-box label {
+        font-size: 1.6em;
+        padding: 0.8em 0 0.5em 0.3em;
+        color: var(--sorta_beige);
+        transition: all 0.5s ease-in-out;
+    }
 
     .input-box select, input {
         border: 0;
@@ -373,24 +376,16 @@ a:hover {
     }
 
 .option-input {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    position: relative;
-    top: 13.33331em;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 4em;
-    width: 4em;
+    position: relative;    
+    height: 1em;
+    width: 1em;
+    padding: 0.7em;
     transition: all 0.15s ease-out 0s;
-    background: #cbd1d8;
-    border: none;
-    color: var(--metalic-golden);
+    background: transparent;
+    color: var(--sorta_beige);
     cursor: pointer;
     display: inline-block;
     margin-right: 0.5rem;
-    outline: none;
     position: relative;
     z-index: 1000;
 }
@@ -399,16 +394,20 @@ a:hover {
         background: var(--old-bronze);
     }
 
+    .option-input:focus {
+        border: none;
+        outline: none;
+        border-bottom: none;
+    }
     .option-input:checked {
-        background: var(--dirty-gold);
+        background: var(--sorta_beige);
     }
 
         .option-input:checked::before {
-            width: 4em;
-            height: 4em;
+            width: 1em;
+            height: 1em;
             display: flex;
-            content: '\f00c';
-            font-size: 2.5em;
+            font-size: 1.5em;
             font-weight: bold;
             position: absolute;
             align-items: center;
@@ -419,34 +418,33 @@ a:hover {
             -webkit-animation: click-wave 0.65s;
             -moz-animation: click-wave 0.65s;
             animation: click-wave 0.65s;
-            background: #40e0d0;
-            content: '';
+            background: var(--sorta_beige);
             display: block;
             position: relative;
             z-index: 100;
         }
 
-    .option-input.radio {
+    .option-input radio {
         border-radius: 50%;
     }
 
-        .option-input.radio::after {
+        .option-input radio::after {
             border-radius: 50%;
         }
 
 @keyframes click-wave {
     0% {
-        height: 4em;
-        width: 4em;
+        height: 1em;
+        width: 1em;
         opacity: 0.35;
         position: relative;
     }
 
     100% {
-        height: 200px;
-        width: 200px;
-        margin-left: -80px;
-        margin-top: -80px;
+        height: 4em;
+        width: 4em;
+        margin-left: -1em;
+        margin-top: -1em;
         opacity: 0;
     }
 }

@@ -6,16 +6,15 @@
 
 <form>
     <div class="input-box">
-        <input placeholder="Year" type="month" @bind="_year" />
+        <input placeholder="Year" type="number" min="2019" max="2099" step="1" @bind="_year" />
         <button class="btn-sign" @onclick="CreateResolution">Create</button>
     </div>
    
 </form>
 
 @code {
-    private DateTime _year { get; set; } = DateTime.Now;
+    private int _year { get; set; } = DateTime.Now.Year;
     private string _userName { get; set; } = string.Empty;
-    private int _currentYear = DateTime.Now.Year;
 
 
     protected async override Task OnInitializedAsync()
@@ -27,6 +26,6 @@
 
     private void CreateResolution()
     {
-        ResolutionService.Create(_userName, _year.Year);
+        ResolutionService.Create(_userName, _year);
     }
 }

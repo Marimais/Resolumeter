@@ -8,7 +8,7 @@
     <div class="input-box">
         <input placeholder="Name" @bind="name"/>
         <input placeholder="Description" @bind="description"/>
-        <input placeholder="Deadline" @bind="endDate"/>
+        <input placeholder="Deadline" type="date" @bind="endDate"/>
        
         <select @bind="resolutionYear">
             @foreach (var resolution in resolutions)
@@ -26,21 +26,23 @@
     private string name { get; set; } = string.Empty;
     private string description { get; set; } = string.Empty;
     private Resolution resolution { get; set; } = default!;
-    private string resolutionYear;
-    private DateTime endDate { get; set; }
+    private int resolutionYear;
+    string? username;
+    private DateTime endDate { get; set; } = DateTime.Now.Date;
     private List<Resolution> resolutions { get; set; } = default!;
 
     protected async override System.Threading.Tasks.Task OnInitializedAsync()
     {
         var authenticationState = await AuthenticationState.GetAuthenticationStateAsync();
         var user = authenticationState.User;
-        string? username = user!.Identity!.Name;
+        username = user!.Identity!.Name;
         if(username is not null)
             resolutions = ResolutionService.GetAll(username);
     }
 
     private void CreateNewGoal()
     {
+        resolution = ResolutionService.Get(username!, resolutionYear);
         GoalService.Create(resolution,name,description,endDate);
     }
 }
