@@ -1,6 +1,5 @@
 ﻿using DataLayer.DataAccess;
 using DataLayer.Models;
-using Microsoft.Extensions.Logging;
 
 namespace ResoluApp.Services
 {
@@ -29,7 +28,7 @@ namespace ResoluApp.Services
                 _context.Resolutions!.Add(resolution);
                 _context.SaveChanges();
 
-                _logger.LogInformation($"Created new {1} resolution for user {1}", year, userName);
+                _logger.LogInformation($"Created new {1} resolution for user {2}", year, userName);
             }
             catch (Exception ex)
             {
@@ -66,20 +65,18 @@ namespace ResoluApp.Services
             return resolution?? default!; 
         }
 
-        public void Delete(string userName, int year) 
+        public void Delete(Resolution resolution) 
         {
             try
             {
-                DateTime date= new DateTime(year, 1, 1);
-                Resolution resolution = _context.Resolutions!.First(a => a.UserName == userName && a.Year == date);
                 _context.Remove(resolution);
                 _context.SaveChanges();
 
-                _logger.LogInformation($"Removed resolution {resolution.Id}");
+                _logger.LogInformation($"Resolution {resolution.Year} has been removed from DataBase.");
             }
             catch(Exception ex)
             {
-                _logger.LogError(ex,$"Couldn't remove year {1} resolution for user: {2}", year, userName);
+                _logger.LogError(ex,$"Couldn't remove year {1} resolution", resolution.Year);
             }
         }
 
