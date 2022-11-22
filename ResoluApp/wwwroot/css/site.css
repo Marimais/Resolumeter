@@ -13,6 +13,7 @@
     --dark-golden: #D2AC47;
     --mid-golden: #EDC967;
     --old-bronze: #9F7A34;
+    --old-bronze-opec: #9F7A344D;
     --dirty-gold: #926F34;
 }
 
@@ -44,11 +45,11 @@ a, .btn-link {
 }
 
 .valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
+    outline: 1em solid #26b050;
 }
 
 .invalid {
-    outline: 1px solid red;
+    outline: 1em solid red;
 }
 
 .validation-message {
@@ -58,7 +59,7 @@ a, .btn-link {
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 -0.1em 0.2em rgba(0, 0, 0, 0.2);
     display: none;
     left: 0;
     padding: 0.6rem 1.25rem 0.7rem 1.25rem;
@@ -85,17 +86,14 @@ a, .btn-link {
 }
 
 .side_bar {
-    background-color: var(--old-bronze);
-    opacity: 50%;
+    background-color: var(--old-bronze-opec);
     position: fixed;
     left: 0;
     width: 20%;
     top: 10%;
     height: 80%;
-    font-size: 20px;
+    font-size: 2em;
     font-weight: 900;
-    backdrop-filter: blur(20px);
-    
 }
 
 header {
@@ -105,25 +103,25 @@ header {
     width: 100%;
     height: 10%;
     color: var(--yellowy);
-    background: linear-gradient(to left,var(--dirty-gold) ,transparent);
+    background: linear-gradient(to left,var(--old-bronze-opec) ,transparent);
     background-size: 400% 400%;
     animation: gradient 30s ease infinite;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(2em);
 }
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
 
-    50% {
-        background-position: 100% 30%;
-    }
+        50% {
+            background-position: 100% 30%;
+        }
 
-    100% {
-        background-position: 0% 50%;
+        100% {
+            background-position: 0% 50%;
+        }
     }
-}
 
 .footer {
     position: fixed;
@@ -131,12 +129,11 @@ header {
     bottom: 0;
     top: 90%;
     width: 100%;
-    background: linear-gradient(to left, var(--dirty-gold),transparent);
+    background: linear-gradient(to left, var(--old-bronze-opec),transparent);
     color: var(--gold-glitter);
     text-align: center;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(2em);
 }
-
 
 .main-box {
     position: fixed;
@@ -147,32 +144,31 @@ header {
     background-color:transparent;
 }
 
-
 .golden-glow {
-    font-size: 50px;
-    color: var(--yellowy);
+    font-size: 3em;
+    color: var(--sorta_beige);
     text-align: center;
-    animation: golden-glow 20s ease-in-out infinite alternate;
+    animation: golden-glow 2s ease-in-out infinite alternate;
     
 }
 
-@-webkit-keyframes golden-glow {
-    from {
-        text-shadow: 0 0 10px var(--yellowy), 0 0 20px var(--yellowy), 0 0 30px var(--mid-golden), 0 0 40px var(--mid-golden), 0 0 50px var(--mid-golden), 0 0 60px var(--mid-golden), 0 0 70px var(--mid-golden);
-    }
+    @-webkit-keyframes golden-glow {
+        from {
+            text-shadow: 0 0 0.5em var(--sorta_beige), 0 0 1em var(--sorta_beige), 0 0 1.5em var(--mid-golden), 0 0 2em var(--mid-golden), 0 0 2.5em var(--mid-golden), 0 0 3em var(--mid-golden), 0 0 3.5em var(--mid-golden);
+        }
 
-    to {
-        text-shadow: 0 0 20px var(--yellowy), 0 0 30px var(--dark-golden), 0 0 40px var(--dark-golden), 0 0 50px var(--dark-golden);
+        to {
+            text-shadow: 0 0 1em var(--sorta_beige), 0 0 1.5em var(--dark-golden), 0 0 2em var(--dark-golden), 0 0 2.5em var(--dark-golden);
+        }
     }
-}
 
 .identity_item{
-    font-size: 20px;
-    color: var(--yellowy);
+    font-size: 1.2em;
+    color: white;
 }
 
 .identity_item:hover{
-    text-shadow:0 0 20px var(--dark-golden);
+    text-shadow:0 0 2em var(--dark-golden);
 }
 
 a:hover {
@@ -182,7 +178,7 @@ a:hover {
 
 .btn-gold {
     color: var(--old-bronze);
-    text-shadow: 0 -1px 0 var(--dark-golden);
+    text-shadow: 0 -0.1em 0 var(--dark-golden);
     background: linear-gradient(180deg,#fea 0%,#dc8 49%,#a95 51%, #dc8 100%);
     
 }
@@ -197,6 +193,7 @@ a:hover {
     font-size: 18px;
     margin: 1em 0.8em;    
 }
+
     .btn-sign:after,
     .btn-sign:before {
         content: '';
@@ -204,26 +201,29 @@ a:hover {
         position: absolute;
         width: 20%;
         height: 20%;
-        border: 2px solid;
+        border: 0.2em solid;
         transition: all 0.6s ease;
-        border-radius: 2px;
+        border-radius: 0.2em;
     }
+
     .btn-sign:before {
         top: 0;
         left: 0;
         border-bottom-color: transparent;
         border-right-color: transparent;
-        border-top-color: var(--greish);
-        border-left-color: var(--greish);
+        border-top-color: var(--sorta_beige);
+        border-left-color: var(--sorta_beige);
     }
+
     .btn-sign:after {
         bottom: 0;
         right: 0;
         border-top-color: transparent;
         border-left-color: transparent;
-        border-bottom-color: var(--greish);
-        border-right-color: var(--greish);
+        border-bottom-color: var(--sorta_beige);
+        border-right-color: var(--sorta_beige);
     }
+
     .btn-sign:hover:before,
     .btn-sign:hover:after {
         width: 100%;
@@ -245,6 +245,7 @@ a:hover {
     align-items:center;
     
 }
+
 .small-frosted-box {
     position: fixed;
     width: 80%;
@@ -263,12 +264,13 @@ a:hover {
     width: 124px;
     background-color: transparent;
     border-radius: 50%;
-    border-width: 1px;
+    border-width: 1em;
     border-color: var(--pinky);
     color: var(--redish);
-    font-size: 50px;
+    font-size: 5em;
     font-weight: bold;
 }
+
     .btn-circle-background
     {
         fill: transparent;
@@ -300,6 +302,7 @@ a:hover {
     .btn-circle:hover {
         cursor: pointer;
     }
+
     .btn-circle-background:hover {
         stroke: transparent;
     }
@@ -319,9 +322,9 @@ a:hover {
     }
 
 .rounded-input {
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 0 0 5px;
+    padding: 1em;
+    border-radius: 0.1em;
+    box-shadow: 0 0 0 0 0.5em;
 }
 
 .input-box {
@@ -329,36 +332,44 @@ a:hover {
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    background-color: var(--old-bronze);
+    display:grid;
+    background-color: var(--old-bronze-opec);
     opacity: 80%;
-    border-radius: 3px;
-    padding: 70px 100px;
-    margin-bottom: 25px;
+    border-radius: 1em;
+    padding: 7em 10em;
+    margin-bottom: 2.5em;
 }
 
 .input-box label {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    font-size: 16px;
-    color: #fff;
+    top: 0;
+    left: 0;
+    font-size: 1.6em;
+    color: white;
     transition: all 0.5s ease-in-out;
 }
 
-.input-box input {
-    border: 0;
-    border-bottom: 1px solid #555;
-    background: transparent;
-    width: 100%;
-    padding: 8px 0 5px 0;
-    font-size: 16px;
-    color: #fff;
-}
+    .input-box select, input {
+        border: 0;
+        border-bottom: 0.1em solid var(--sorta_beige);
+        background: transparent;
+        width: 100%;
+        padding: 0.8em 0 0.5em 0;
+        font-size: 1.6em;
+        color: var(--sorta_beige);
+    }
 
-    .input-box input:focus {
+    .input-box select:focus, input:focus {
         border: none;
         outline: none;
-        border-bottom: 1px solid #e74c3c;
+        border-bottom: 0.2em solid var(--dark-golden);
+        color: var(--metalic-golden);
+        font-size: 1.8em;
+    }
+
+    .input-box button {
+        color: var(--sorta_beige);
+        font-size: 1.8em;
     }
 
 .option-input {
@@ -366,12 +377,12 @@ a:hover {
     -moz-appearance: none;
     appearance: none;
     position: relative;
-    top: 13.33333px;
+    top: 13.33331em;
     right: 0;
     bottom: 0;
     left: 0;
-    height: 40px;
-    width: 40px;
+    height: 4em;
+    width: 4em;
     transition: all 0.15s ease-out 0s;
     background: #cbd1d8;
     border: none;
@@ -389,15 +400,15 @@ a:hover {
     }
 
     .option-input:checked {
-        background: var(--dirty-gold;
+        background: var(--dirty-gold);
     }
 
         .option-input:checked::before {
-            width: 40px;
-            height: 40px;
+            width: 4em;
+            height: 4em;
             display: flex;
             content: '\f00c';
-            font-size: 25px;
+            font-size: 2.5em;
             font-weight: bold;
             position: absolute;
             align-items: center;
@@ -425,8 +436,8 @@ a:hover {
 
 @keyframes click-wave {
     0% {
-        height: 40px;
-        width: 40px;
+        height: 4em;
+        width: 4em;
         opacity: 0.35;
         position: relative;
     }

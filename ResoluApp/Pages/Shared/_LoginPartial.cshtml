@@ -10,18 +10,18 @@
         <a id="manage" class="nav-link text-light" asp-area="Identity" asp-page="/Account/Login" title="Manage">Hello @UserManager.GetUserName(User)!</a>
     </li>
     <li class="nav-item identity_item">
-        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-            <button id="logout" type="submit" class="nav-link btn btn-link text-light">Logout</button>
+            <form id="logoutForm" class="form-inline identity_item" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link text-light bi bi-box-arrow-right">Logout</button>
         </form>
     </li>
 }
 else
 {
     <li class="nav-item identity_item">
-        <a class="nav-link text-light" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        <a class="nav-link text-light bi bi-person-plus" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>
      <li class="nav-item identity_item">
-        <a class="nav-link text-light" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="nav-link text-light bi bi-box-arrow-in-right" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
     </li>
 }
 </ul>
