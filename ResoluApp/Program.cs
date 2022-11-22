@@ -44,6 +44,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 builder.Services.AddScoped<ITaskService, TaskService>();
+builder.Services.AddScoped<IGoalService, GoalService>();
 builder.Services.AddScoped<IResolutionService, ResolutionService>();
 
 
