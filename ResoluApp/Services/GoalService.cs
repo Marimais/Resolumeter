@@ -37,9 +37,9 @@ namespace ResoluApp.Services
             }
         }
 
-        public List<Goal?> GetAll(Resolution resolution)
+        public List<Goal>? GetAll(Resolution resolution)
         {
-            List<Goal> goals = new List<Goal>();
+            List<Goal>? goals = new List<Goal>();
             try
             {
                 goals = _dbContext.Goals!.Where(a => a.Resolution == resolution).ToList();
@@ -53,7 +53,7 @@ namespace ResoluApp.Services
 
         public Goal? Get(String name)
         {
-            var goal = null;
+            Goal? goal=default!;
             try
             {
                 goal = _dbContext.Goals!.FirstOrDefault(g => g.Name == name);

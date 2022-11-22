@@ -32,8 +32,9 @@
     {
         var authenticationState = await AuthenticationState.GetAuthenticationStateAsync();
         var user = authenticationState.User;
-        string username = user.Identity.Name;
-        resolutions = ResolutionService.GetAll(username);
+        string? username = user!.Identity!.Name;
+        if(username is not null)
+            resolutions = ResolutionService.GetAll(username);
     }
 
     private void CreateNewGoal()

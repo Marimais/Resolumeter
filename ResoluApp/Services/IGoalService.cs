@@ -7,6 +7,6 @@ namespace ResoluApp.Services
         void Create(Resolution resolution, string name, string? description, DateTime endDate);
         void Delete(Goal goal);
         Goal? Get(string name);
-        List<Goal?> GetAll(Resolution resolution);
+        List<Goal>? GetAll(Resolution resolution);
     }
 }

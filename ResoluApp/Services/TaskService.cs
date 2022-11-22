@@ -16,9 +16,9 @@ namespace ResoluApp.Services
             _logger = logger;
         }
 
-        public List<Task?> GetAll(Goal goal)
+        public List<Task>? GetAll(Goal goal)
         {
-            List<Task> tasks = new List<Task>();
+            List<Task>? tasks = new List<Task>();
             try
             {
                 tasks = _context.Tasks!.Where(t => t.Goal.Equals(goal)).ToList();
@@ -32,7 +32,7 @@ namespace ResoluApp.Services
 
         public Task? Get(string name)
         {
-            var task = default!;
+            Task? task = default!;
             try
             {
                 task = _context.Tasks!.FirstOrDefault(t => t.Name == name);
