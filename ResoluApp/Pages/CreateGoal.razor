@@ -1,0 +1,43 @@
+﻿@page "/Goal"
+@attribute [Authorize]
+@inject AuthenticationStateProvider AuthenticationState
+@inject IGoalService GoalService
+@inject IResolutionService ResolutionService
+
+<form>
+    <div class="input-box">
+        <input placeholder="Goal Name" @bind="name"/>
+        <input placeholder="Description" @bind="description"/>
+        <input placeholder="Deadline" @bind="endDate"/>
+        <InputSelect placeholder="Resolution Year" @bind="resolution">
+            @foreach (var resolution in resolutions)
+            {
+                <option>
+                    @resolution.Year
+                </option>
+            }
+        </InputSelect>
+        <button class="btn-sign">Create</button>
+    </div>
+</form>
+
+@code {
+    private string name { get; set; } = string.Empty;
+    private string description { get; set; } = string.Empty;
+    private Resolution resolution { get; set; } = default!;
+    private DateTime endDate { get; set; }
+    private List<Resolution> resolutions { get; set; } = default!;
+
+    private async override Task OnInitializedAsync()
+    {
+        var authenticationState = await AuthenticationState.GetAuthenticationStateAsync();
+        var user = authenticationState.User;
+        string username = user.Identity.Name;
+        resolutions = ResolutionService.GetAll(username);
+    }
+
+    private void CreateGoal()
+    {
+        GoalService.Create(resolution,name,description,endDate);
+    }
+}
