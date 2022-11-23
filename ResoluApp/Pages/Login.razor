@@ -1,0 +1,10 @@
+﻿@using Task=System.Threading.Tasks.Task
+@inject NavigationManager UriHelper
+
+@code {
+    protected async override Task OnInitializedAsync()
+    {    
+        UriHelper.NavigateTo("Identity/Account/Login", true);
+        await Task.Delay(1);
+    }
+}

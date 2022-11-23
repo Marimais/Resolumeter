@@ -7,11 +7,11 @@
 
 <h1>@ViewData["Title"]</h1>
 <div class="row frosted-box">
-    <div class="col-md-4 input-box">
+    <div class="col-md-4 ">
         <section>
-            <form id="account" method="post">
+            <form id="account" method="post" class="input-box">
                 <h2>Use a local account to log in.</h2>
-                <hr />
+                
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating">
                     <input placeholder="Email" asp-for="Input.Email" autocomplete="username" aria-required="true" />

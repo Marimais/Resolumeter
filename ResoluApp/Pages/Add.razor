@@ -1,0 +1,45 @@
+﻿@inject NavigationManager UriHelper
+
+<PageTitle>Year Resolution</PageTitle>
+
+<div class="index-container">
+
+    <h2> Add new </h2>
+
+    <div class="add-container">
+
+        <div class="card">
+            <label>Resolution</label>
+            <button class="btn-circle" @onclick="@(()=>Navigate("Resolution"))"><span class="oi oi-plus"> </span> </button>
+        </div>
+
+        <div class="card">
+            <label>Goal</label>
+            <button class="btn-circle" @onclick="@(()=>Navigate("Goal"))"><span class="oi oi-plus"> </span> </button>
+        </div>
+
+        <div class="card">
+            <label>Task</label>
+            <button class="btn-circle" @onclick="@(()=>Navigate("Task"))"><span class="oi oi-plus"> </span> </button>
+        </div>
+    </div>
+
+
+</div>
+
+@* <ul>
+    @foreach (var task in _tasks)
+    {
+            <li>
+                <input @bind="task.Status" class="option-input" />
+                <input @bind="task.Name"/>
+            </li>
+    }
+    </ul>*@
+
+@code {
+    private void Navigate(string page)
+    {
+        UriHelper.NavigateTo(page);
+    }
+}

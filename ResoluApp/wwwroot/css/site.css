@@ -232,7 +232,7 @@ a:hover {
 
 .frosted-box{
     position:fixed;
-    width:100%;
+    width:110%;
     height:80%;
     top:10%;
     bottom:90%;
@@ -311,6 +311,7 @@ a:hover {
         text-align:center;
         color: var(--sorta_beige);
         font-size: 2em;
+        border:none;
     }
 
     .input-box label {
