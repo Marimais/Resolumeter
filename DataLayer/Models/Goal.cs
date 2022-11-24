@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataLayer.Models
 {
-
     public class Goal
     {
         public Goal() 
@@ -15,6 +14,7 @@ namespace DataLayer.Models
         [Key]
         public int Id { get; set; }
         [Required]
+        [Key]
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }
         [Required]
