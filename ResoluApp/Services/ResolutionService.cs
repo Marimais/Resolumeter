@@ -22,7 +22,7 @@ namespace ResoluApp.Services
                 Resolution resolution = new()
                 {
                     UserName = userName,
-                    Year = new DateTime(year, 1, 1)
+                    Year = year
                 };
 
                 _context.Resolutions!.Add(resolution);
@@ -55,8 +55,7 @@ namespace ResoluApp.Services
             Resolution resolution=default!;
             try
             {
-                DateTime date= new DateTime(year, 1, 1);
-                resolution = _context.Resolutions!.First(a => a.UserName == userName && a.Year == date);
+                resolution = _context.Resolutions!.First(a => a.UserName == userName && a.Year == year);
             }
             catch (Exception ex)
             {

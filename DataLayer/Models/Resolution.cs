@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataLayer.Models
 {
 
-    [Index(nameof(UserName), nameof(Year), IsUnique = true)]
+    [Index( nameof(UserName), nameof(Year), IsUnique = true)]
     public class Resolution
     {
         public Resolution() 
@@ -14,10 +13,12 @@ namespace DataLayer.Models
         }
         [Key]
         public int Id { get; set; }
-        [Required]        
+        [Required]
+        [StringLength(50)]
         public string UserName { get; set; } = string.Empty;
-        [Required]        
-        public DateTime Year { get; set; }
+        [Required]
+        [Range(2022,2099)]
+        public int Year { get; set; }
 
         public virtual IEnumerable<Goal> Goals { get; set; }
         
