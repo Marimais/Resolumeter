@@ -9,40 +9,21 @@
         <input placeholder="Name" @bind="_name"/>
         <input placeholder="Description" @bind="_description"/>
         <input placeholder="Deadline" type="date" @bind="endDate"/>
-       
-        <select @bind="resolutionYear">
-            @foreach (var resolution in resolutions)
-            {
-                <option>
-                    @resolution.Year.Year
-                </option>
-            }
-        </select>
+        <ResolutionSelector @bind-Resolution="_resolution" @bind-Resolution:event="ResolutionChanged"></ResolutionSelector>
         <button class="btn-sign" @onclick="CreateNewGoal">Create</button>
     </div>
 </form>
 
 @code {
+    
+    private Resolution? _resolution { get; set; }
+
     private string _name { get; set; } = string.Empty;
     private string _description { get; set; } = string.Empty;
-    private Resolution resolution { get; set; } = default!;
-    private int resolutionYear;
-    string? username;
     private DateTime endDate { get; set; } = DateTime.Now.Date;
-    private List<Resolution> resolutions { get; set; } = default!;
-
-    protected async override System.Threading.Tasks.Task OnInitializedAsync()
-    {
-        var authenticationState = await AuthenticationState.GetAuthenticationStateAsync();
-        var user = authenticationState.User;
-        username = user!.Identity!.Name;
-        if(username is not null)
-            resolutions = ResolutionService.GetAll(username);
-    }
 
     private void CreateNewGoal()
     {
-        resolution = ResolutionService.Get(username!, resolutionYear);
-        GoalService.Create(resolution,_name,_description,endDate);
+        GoalService.Create(_resolution!, _name, _description, endDate);
     }
 }

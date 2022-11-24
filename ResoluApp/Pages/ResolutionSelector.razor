@@ -1,0 +1,41 @@
+﻿@inject AuthenticationStateProvider AuthenticationState
+@inject IResolutionService ResolutionService
+
+
+<select @bind="@_resolution" @oninput="ResolutionSelected">
+    @foreach (var resolution in resolutions)
+    {
+        <option value="@resolution">
+            @resolution.Year.Year
+        </option>
+    }
+</select>
+
+<p>@_resolution.Year</p>
+
+@code {
+    private Resolution _resolution;
+
+    [Parameter]
+    public Resolution? Resolution { get; set; }
+
+    [Parameter]
+    public EventCallback<Resolution> ResolutionChanged { get; set; }
+
+    private List<Resolution> resolutions { get; set; } = default!;
+
+    protected async override System.Threading.Tasks.Task OnInitializedAsync()
+    {
+        var authenticationState = await AuthenticationState.GetAuthenticationStateAsync();
+        var user = authenticationState.User;
+        var username = user!.Identity!.Name;
+        if (username is not null)
+            resolutions = ResolutionService.GetAll(username);
+    }
+
+    private  System.Threading.Tasks.Task ResolutionSelected()
+    {
+        Resolution = _resolution;
+        return ResolutionChanged.InvokeAsync(Resolution);
+    }
+}

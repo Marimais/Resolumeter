@@ -21,7 +21,7 @@ html, body {
     font-family: cursive, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     height: 100%;
     width: 100%;
-    background: url(Resolution.png) no-repeat center center fixed;
+    background: url(background.png) no-repeat center center fixed;
     background-size: cover;
     background-repeat: no-repeat;
 }
