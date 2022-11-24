@@ -6,9 +6,8 @@ namespace DataLayer.Models
 {    
     public class Task
     {
-        [Key]
-        public int Id { get; set; }
         [Required]
+        [StringLength(100)]
         [Key]
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(ResolutionDBContext))]
-    [Migration("20221124093048_addIndexes")]
-    partial class addIndexes
+    [Migration("20221124180705_addKeys")]
+    partial class addKeys
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,11 +47,9 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Models.Goal", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -59,17 +57,13 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ResolutionId")
+                    b.Property<int>("ResolutionId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
                     b.HasIndex("ResolutionId");
 
@@ -101,11 +95,9 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Models.Task", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -113,12 +105,9 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("GoalId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("GoalName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
@@ -126,9 +115,9 @@ namespace DataLayer.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("Name");
 
-                    b.HasIndex("GoalId");
+                    b.HasIndex("GoalName");
 
                     b.ToTable("Tasks");
                 });
@@ -338,8 +327,10 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("DataLayer.Models.Goal", b =>
                 {
                     b.HasOne("DataLayer.Models.Resolution", "Resolution")
-                        .WithMany()
-                        .HasForeignKey("ResolutionId");
+                        .WithMany("Goals")
+                        .HasForeignKey("ResolutionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Resolution");
                 });
@@ -347,8 +338,10 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("DataLayer.Models.Task", b =>
                 {
                     b.HasOne("DataLayer.Models.Goal", "Goal")
-                        .WithMany()
-                        .HasForeignKey("GoalId");
+                        .WithMany("Tasks")
+                        .HasForeignKey("GoalName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Goal");
                 });
@@ -402,6 +395,16 @@ namespace DataLayer.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DataLayer.Models.Goal", b =>
+                {
+                    b.Navigation("Tasks");
+                });
+
+            modelBuilder.Entity("DataLayer.Models.Resolution", b =>
+                {
+                    b.Navigation("Goals");
                 });
 #pragma warning restore 612, 618
         }
