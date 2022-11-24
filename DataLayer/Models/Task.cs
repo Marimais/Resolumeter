@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataLayer.Models
-{
+{    
     public class Task
     {
         [Key]
@@ -17,6 +18,8 @@ namespace DataLayer.Models
 
         [Required]
         public virtual Status Status { get; set; } = Status.Started;
-        public virtual Goal Goal { get; set; }
+        [Required]
+        public virtual Goal Goal { get; set; }    
     }
 }
+ 
