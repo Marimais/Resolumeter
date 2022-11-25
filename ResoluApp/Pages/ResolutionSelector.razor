@@ -2,7 +2,7 @@
 @inject IResolutionService ResolutionService
 
 
-<select @bind="@_resolution" @oninput="ResolutionSelected">
+<select @bind="_resolution" @oninput="ResolutionSelected">
     @foreach (var resolution in resolutions)
     {
         <option value="@resolution">
@@ -15,6 +15,7 @@
 
 @code {
     private Resolution _resolution;
+
 
     [Parameter]
     public Resolution? Resolution { get; set; }
