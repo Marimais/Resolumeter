@@ -16,16 +16,16 @@ namespace ResoluApp.Services
             _logger = logger;
         }
 
-        public List<Task>? GetAll(Goal goal)
+        public List<Task>? GetAll(int goalId)
         {
             List<Task>? tasks = new List<Task>();
             try
             {
-                tasks = _context.Tasks!.Where(t => t.Goal.Equals(goal)).ToList();
+                tasks = _context.Tasks!.Where(t => t.GoalId == goalId).ToList();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Could not retrive tasks for goal - {goal.Name}");
+                _logger.LogError(ex, $"Could not retrive tasks for goal - {goalId}");
             }
             return tasks;
         }
@@ -44,7 +44,21 @@ namespace ResoluApp.Services
             return task;
         }
 
-        public void Create(Goal goal, string name, string? description, DateTime startDate, DateTime endDate, Status status)
+        public Task? Get(int id)
+        {
+            Task? task = default!;
+            try
+            {
+                task = _context.Tasks!.FirstOrDefault(t => t.Id == id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Could not find task with Id - {id}");
+            }
+            return task;
+        }
+
+        public void Create(int goalId, string name, string? description, DateTime startDate, DateTime endDate, Status status)
         {
             Task task = new()
             {
@@ -52,8 +66,8 @@ namespace ResoluApp.Services
                 Description = description,
                 StartDate = startDate,
                 EndDate = endDate,
-                Status=status,
-                Goal = goal,
+                Status = status,
+                GoalId = goalId,
             };
 
             try
@@ -61,11 +75,11 @@ namespace ResoluApp.Services
                 _context.Tasks!.Add(task);
                 _context.SaveChanges();
 
-                _logger.LogInformation($"Added new Task - {task.Name} for the Goal - {goal.Name}");
+                _logger.LogInformation($"Added new Task - {task.Name} for the Goal - {goalId}");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Could not create new task for Goal - {goal.Name}");
+                _logger.LogError(ex, $"Could not create new task for Goal - {goalId}");
             }
         }
 

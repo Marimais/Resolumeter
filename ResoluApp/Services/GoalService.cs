@@ -14,7 +14,7 @@ namespace ResoluApp.Services
             _logger = logger;
         }
 
-        public void Create(Resolution resolution, String name, String? description, DateTime endDate)
+        public void Create(int resolutionId, String name, String? description, DateTime endDate)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace ResoluApp.Services
                     Name = name,
                     Description = description,
                     EndDate = endDate,
-                    Resolution = resolution
+                    ResolutionId = resolutionId
                 };
 
                 _dbContext.Goals!.Add(goal);
@@ -37,23 +37,23 @@ namespace ResoluApp.Services
             }
         }
 
-        public List<Goal>? GetAll(Resolution resolution)
+        public List<Goal>? GetAll(int resolutionId)
         {
             List<Goal>? goals = new List<Goal>();
             try
             {
-                goals = _dbContext.Goals!.Where(a => a.Resolution == resolution).ToList();
+                goals = _dbContext.Goals!.Where(a => a.ResolutionId == resolutionId).ToList();
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Could not find resolutions for resolution: {1}", resolution.Year);
+                _logger.LogError(ex, $"Could not find resolutions for resolution: {1}", resolution.Id);
             }
             return goals;
         }
 
         public Goal? Get(String name)
         {
-            Goal? goal=default!;
+            Goal? goal = default!;
             try
             {
                 goal = _dbContext.Goals!.FirstOrDefault(g => g.Name == name);
@@ -62,6 +62,21 @@ namespace ResoluApp.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Could not find goal with name - {name}");
+            }
+            return goal;
+        }
+
+        public Goal? Get(int id)
+        {
+            Goal? goal = default!;
+            try
+            {
+                goal = _dbContext.Goals!.FirstOrDefault(g => g.Id == id);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Could not find goal with Id - {id}");
             }
             return goal;
         }

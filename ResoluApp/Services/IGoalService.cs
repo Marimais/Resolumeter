@@ -4,9 +4,10 @@ namespace ResoluApp.Services
 {
     internal interface IGoalService
     {
-        void Create(Resolution resolution, string name, string? description, DateTime endDate);
+        void Create(int resolutionId, string name, string? description, DateTime endDate);
         void Delete(Goal goal);
+        Goal? Get(int id);
         Goal? Get(string name);
-        List<Goal>? GetAll(Resolution resolution);
+        List<Goal>? GetAll(int resolutionId);
     }
 }
