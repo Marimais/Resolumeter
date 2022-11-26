@@ -2,7 +2,7 @@
 @inject IResolutionService ResolutionService
 
 
-<select @onchange="ResolutionSelected">
+<select @bind="ResolutionId">
     <option value="0">resolution year</option>
     @foreach (var resolution in resolutions)
     {
@@ -13,12 +13,22 @@
 </select>
 
 @code {
+    private int _id;
 
     [Parameter]
-    public Resolution? Resolution { get; set; }
+    public int ResolutionId
+    {
+        get => _id;
+        set
+        {
+            if (_id == value) return;            
+            _id = value;
+            ResolutionIdChanged.InvokeAsync(value);            
+        }
+    }
 
     [Parameter]
-    public EventCallback<Resolution> ResolutionChanged { get; set; }
+    public EventCallback<int> ResolutionIdChanged { get; set; }
 
     private List<Resolution> resolutions { get; set; } = default!;
 
@@ -29,12 +39,5 @@
         var username = user!.Identity!.Name;
         if (username is not null)
             resolutions = ResolutionService.GetAll(username);
-    }
-
-
-    private System.Threading.Tasks.Task ResolutionSelected(ChangeEventArgs changeEventArgs)
-    {
-        Resolution = ResolutionService.Get(Convert.ToInt32(changeEventArgs.Value!));
-        return ResolutionChanged.InvokeAsync(Resolution);
     }
 }
