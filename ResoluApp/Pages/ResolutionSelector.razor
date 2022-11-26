@@ -2,20 +2,17 @@
 @inject IResolutionService ResolutionService
 
 
-<select @bind="_resolution" @oninput="ResolutionSelected">
+<select @onchange="ResolutionSelected">
+    <option value="0">resolution year</option>
     @foreach (var resolution in resolutions)
     {
-        <option value="@resolution">
+        <option value="@resolution.Id">
             @resolution.Year
         </option>
     }
 </select>
 
-<p>@_resolution.Year</p>
-
 @code {
-    private Resolution _resolution;
-
 
     [Parameter]
     public Resolution? Resolution { get; set; }
@@ -34,9 +31,10 @@
             resolutions = ResolutionService.GetAll(username);
     }
 
-    private  System.Threading.Tasks.Task ResolutionSelected()
+
+    private System.Threading.Tasks.Task ResolutionSelected(ChangeEventArgs changeEventArgs)
     {
-        Resolution = _resolution;
+        Resolution = ResolutionService.Get(Convert.ToInt32(changeEventArgs.Value!));
         return ResolutionChanged.InvokeAsync(Resolution);
     }
 }
