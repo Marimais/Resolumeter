@@ -29,7 +29,7 @@ namespace ResoluApp.Services
                 _dbContext.Goals!.Add(goal);
                 _dbContext.SaveChanges();
 
-                _logger.LogInformation($"Created new goal- '{1}' for resolution {2}", goal.Name, resolution.Year);
+                _logger.LogInformation($"Created new goal- '{1}'", goal.Name);
             }
             catch (Exception ex)
             {
@@ -46,7 +46,7 @@ namespace ResoluApp.Services
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Could not find resolutions for resolution: {1}", resolution.Id);
+                _logger.LogError(ex, $"Could not find resolutions for resolution: {1}", resolutionId);
             }
             return goals;
         }
