@@ -64,6 +64,20 @@ namespace ResoluApp.Services
             return resolution?? default!; 
         }
 
+        public Resolution Get(int id)
+        {
+            Resolution resolution = default!;
+            try
+            {
+                resolution = _context.Resolutions!.First(a => a.Id==id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Could not find resolution for Id: {id}");
+            }
+            return resolution ?? default!;
+        }
+
         public void Delete(Resolution resolution) 
         {
             try
