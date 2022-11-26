@@ -36,6 +36,6 @@ namespace DataLayer.DataAccess
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-         }
+        }
     }
 }

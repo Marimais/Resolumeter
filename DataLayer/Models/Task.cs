@@ -3,12 +3,14 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataLayer.Models
-{    
+{
+    [Index(nameof(Name),nameof(GoalId), IsUnique = true)]
     public class Task
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
         [StringLength(100)]
-        [Key]
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }
         [Required]
@@ -18,7 +20,9 @@ namespace DataLayer.Models
 
         [Required]
         public virtual Status Status { get; set; } = Status.Started;
-        [Required]
+        
+        public int GoalId { get; set; } 
+
         public virtual Goal Goal { get; set; }    
     }
 }

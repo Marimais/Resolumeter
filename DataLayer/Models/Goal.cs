@@ -1,18 +1,21 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataLayer.Models
-{    
+{
+    [Index(nameof(Name), nameof(ResolutionId), IsUnique = true)]
     public class Goal
     {
         public Goal() 
         {
             this.Tasks= new List<Task>();
         }
+
+        [Key]
+        public int Id { get; set; }
+
         [Required]
         [StringLength(100)]
-        [Key]
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }
         [Required]
@@ -21,7 +24,8 @@ namespace DataLayer.Models
         [Required]
         public virtual Status Status { get; set; } = Status.Started;
 
-        [Required]
+        public int ResolutionId { get; set; }
+
         public virtual Resolution Resolution { get; set; }
 
         public IEnumerable<Task> Tasks { get; set;}
