@@ -6,34 +6,48 @@
     <div class="input-box">
         <input placeholder="Name" @bind="_taskName" />
         <input placeholder="Description" @bind="_description"/>
-        <input placeholder="Start Date" type="date" @bind="_startDate"/>
-        <input placeholder="End Date" type="date" @bind="_endDate" />
-        <GoalSelector Year="_endDate.Year" @bind-GoalId="_goalId"></GoalSelector>
+        <input placeholder="Start Date" type="date" @bind="StartDate"/>
+        <input placeholder="End Date" type="date" @bind="EndDate" />
+        <GoalSelector Year="_year" @bind-GoalId="_goalId"></GoalSelector>
         <button class="btn-sign" @onclick="AddTask">Create</button>
     </div>
 </form>
 
-
-
-
 @code {
+    private int _goalId;
     private List<DataLayer.Models.Task> _tasks = new();
     private string? _taskName;
     private string? _description;
     private DateTime _startDate = DateTime.Now.Date;
     private DateTime _endDate = DateTime.Now.Date;
-    private int _goalId;
+    private int _year = DateTime.Now.Year;
+
+    public DateTime StartDate
+    {
+        get => _startDate;
+        set
+        {
+            _startDate = value;
+            _endDate = value;
+            _year = value.Year;
+        }
+    }
+
+    public DateTime EndDate
+    {
+        get => _endDate;
+        set
+        {
+            _endDate = value;
+            _year = value.Year;
+        }
+    }
 
     private void AddTask()
     {
         if(!string.IsNullOrWhiteSpace(_taskName))
         {
             TaskService.Create(_goalId, _taskName, _description, _startDate, _endDate);
-
-            _taskName = string.Empty;
-            _description = string.Empty;
-            _startDate = DateTime.Now;
-            _endDate = DateTime.Now;
         }
     }
 }

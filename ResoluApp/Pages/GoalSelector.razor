@@ -3,6 +3,7 @@
 @inject IResolutionService ResolutionService
 
 <select @bind="GoalId">
+    <option value="0">Goal</option>
     @foreach (var goal in _goals)
     {
         <option value="@goal.Id">@goal.Name</option>
@@ -10,28 +11,54 @@
 </select>
 
 @code {
-    [Parameter]
-    public int? Year { get; set; }
-    [Parameter]
-    public int GoalId { get; set; }
-
-    private List<Resolution> _resolutions { get; set; } = default!;
+    private int _goalId;
+    private int _year;
+    private string? _userName;
     private List<Goal> _goals = new();
 
-    protected async override System.Threading.Tasks.Task OnInitializedAsync()
+    [Parameter]
+    public int Year
     {
-        var authenticationState = await AuthenticationState.GetAuthenticationStateAsync();
-        var user = authenticationState.User;
-        string? username = user!.Identity!.Name;
-        if (username is not null)
+        get => _year;
+        set
         {
-            if (Year!=null)
-                _resolutions.Add(ResolutionService.Get(username,Year.Value));
-            else
-                _resolutions = ResolutionService.GetAll(username);
+            if (_year == value) return;
+            _year = value;
+            if (_userName is not null)
+                GetGoals();
         }
+    }
 
-        foreach (var resolution in _resolutions)
+    [Parameter]
+    public EventCallback<int> GoalIdChanged { get; set; }
+
+    [Parameter]
+    public int GoalId
+    {
+        get => _goalId;
+        set
+        {
+            if (_goalId == value) return;
+            _goalId = value;
+            GoalIdChanged.InvokeAsync(value);
+        }
+    }
+
+    protected override async System.Threading.Tasks.Task OnInitializedAsync()
+    {
+        Identify identify = new(AuthenticationState);
+        _userName = await identify.GetUserName();
+        if (_userName is not null)
+        {
+            GetGoals();
+        }
+    }
+
+    private void GetGoals()
+    {
+        _goals.Clear();
+        Resolution resolution = ResolutionService.Get(_userName!, Year);
+        if (resolution != null)
         {
             _goals.AddRange(GoalService.GetAll(resolution.Id)!);
         }
