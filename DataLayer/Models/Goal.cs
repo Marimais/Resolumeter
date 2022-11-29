@@ -6,9 +6,9 @@ namespace DataLayer.Models
     [Index(nameof(Name), nameof(ResolutionId), IsUnique = true)]
     public class Goal
     {
-        public Goal() 
+        public Goal()
         {
-            this.Tasks= new List<Task>();
+            this.Tasks = new List<Task>();
         }
 
         [Key]
@@ -18,9 +18,10 @@ namespace DataLayer.Models
         [StringLength(100)]
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }
+
         [Required]
         public DateTime EndDate { get; set; }
-       
+
         [Required]
         public virtual Status Status { get; set; } = Status.Started;
 
@@ -28,6 +29,6 @@ namespace DataLayer.Models
 
         public virtual Resolution Resolution { get; set; }
 
-        public IEnumerable<Task> Tasks { get; set;}
+        public virtual IEnumerable<Task> Tasks { get; set; }
     }
 }
