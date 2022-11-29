@@ -1,6 +1,4 @@
-﻿@inject AuthenticationStateProvider AuthenticationState
-
-<div>
+﻿<div>
 
     <div class="add-container">
 
@@ -16,24 +14,6 @@
 
 </div>
 
-@* <ul>
-    @foreach (var task in _tasks)
-    {
-            <li>
-                <input @bind="task.Status" class="option-input" />
-                <input @bind="task.Name"/>
-            </li>
-    }
-    </ul>*@
 
 @code{
-    [Parameter]
-    public string Username { get; set; }
-
-    protected async override System.Threading.Tasks.Task OnInitializedAsync()
-        {
-            var authenticationState = await AuthenticationState.GetAuthenticationStateAsync();
-            var user = authenticationState.User;
-            Username = user!.Identity!.Name!;
-        }
     }
