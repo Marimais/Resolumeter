@@ -10,12 +10,6 @@
         <input placeholder="Description" @bind="_description" />
         <input placeholder="Deadline" type="date" @bind="endDate" />
         <ResolutionSelector @bind-ResolutionId="_resolutionId"></ResolutionSelector>
-        <select @bind="_status">
-            @foreach (var status in Enum.GetValues(typeof(DataLayer.Models.Status)))
-            {
-                <option>@status</option>
-            }
-        </select>
         <button class="btn-sign" @onclick="CreateNewGoal">Create</button>
     </div>
 </form>
@@ -23,7 +17,6 @@
 @code {
 
     private int _resolutionId { get; set; }
-    private DataLayer.Models.Status _status;
     private string _name { get; set; } = string.Empty;
     private string _description { get; set; } = string.Empty;
     private DateTime endDate { get; set; } = DateTime.Now.Date;

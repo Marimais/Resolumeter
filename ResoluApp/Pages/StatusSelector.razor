@@ -1,0 +1,11 @@
+﻿<select @bind="Status">
+    @foreach (var status in Enum.GetValues(typeof(DataLayer.Models.Status)))
+    {
+        <option>@status</option>
+    }
+</select>
+
+@code {
+    [Parameter]
+    public DataLayer.Models.Status Status { get; set; }
+}

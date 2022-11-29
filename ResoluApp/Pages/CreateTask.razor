@@ -1,32 +1,15 @@
 ﻿@page "/Task"
 @attribute [Authorize]
-@inject AuthenticationStateProvider AuthenticationState
 @inject ITaskService TaskService
-@inject IGoalService GoalService
-@inject IResolutionService ResolutionService
 
 <form>
     <div class="input-box">
-
-    <input placeholder="Name" @bind="_taskName" />
-    <input placeholder="Description" @bind="_description"/>
-    <input placeholder="Start Date" type="date" @bind="_startDate"/>
-    <input placeholder="End Date" type="date" @bind="_endDate" />
-
-    <select @bind="_status">
-        @foreach (var status in Enum.GetValues(typeof(DataLayer.Models.Status)))
-        {
-            <option>@status</option>
-        }    
-    </select>
-
-    <select value="@_goal">
-        @foreach (var goal in _goals)
-        {
-            <option value="@goal">@goal.Name</option>
-        }
-    </select>
-    <button class="btn-sign" @onclick="AddTask">Create</button>
+        <input placeholder="Name" @bind="_taskName" />
+        <input placeholder="Description" @bind="_description"/>
+        <input placeholder="Start Date" type="date" @bind="_startDate"/>
+        <input placeholder="End Date" type="date" @bind="_endDate" />
+        <GoalSelector Year="_endDate.Year" @bind-GoalId="_goalId"></GoalSelector>
+        <button class="btn-sign" @onclick="AddTask">Create</button>
     </div>
 </form>
 
@@ -39,37 +22,18 @@
     private string? _description;
     private DateTime _startDate = DateTime.Now.Date;
     private DateTime _endDate = DateTime.Now.Date;
-    private DataLayer.Models.Status _status;
-    private DateTime _currentDate = DateTime.Now.Date;
-    private Goal _goal { get; set; } = default!;
-    private List<Resolution> _resolutions { get; set; } = default!;
-    private List<Goal> _goals = new();
-
-    protected async override System.Threading.Tasks.Task OnInitializedAsync()
-    {
-        var authenticationState = await AuthenticationState.GetAuthenticationStateAsync();
-        var user = authenticationState.User;
-        string? username = user!.Identity!.Name;
-        if (username is not null)
-            _resolutions = ResolutionService.GetAll(username);
-
-        foreach(var resolution in _resolutions)
-        {
-            _goals.AddRange(GoalService.GetAll(resolution)!);
-        }
-    }
+    private int _goalId;
 
     private void AddTask()
     {
         if(!string.IsNullOrWhiteSpace(_taskName))
         {
-            TaskService.Create(_goal, _taskName, _description, _startDate, _endDate, _status);
+            TaskService.Create(_goalId, _taskName, _description, _startDate, _endDate);
 
             _taskName = string.Empty;
             _description = string.Empty;
             _startDate = DateTime.Now;
             _endDate = DateTime.Now;
-            _status = DataLayer.Models.Status.Started;
         }
     }
 }

@@ -58,7 +58,7 @@ namespace ResoluApp.Services
             return task;
         }
 
-        public void Create(int goalId, string name, string? description, DateTime startDate, DateTime endDate, Status status)
+        public void Create(int goalId, string name, string? description, DateTime startDate, DateTime endDate)
         {
             Task task = new()
             {
@@ -66,7 +66,6 @@ namespace ResoluApp.Services
                 Description = description,
                 StartDate = startDate,
                 EndDate = endDate,
-                Status = status,
                 GoalId = goalId,
             };
 

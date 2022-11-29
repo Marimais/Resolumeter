@@ -1,0 +1,39 @@
+﻿@inject AuthenticationStateProvider AuthenticationState
+@inject IGoalService GoalService
+@inject IResolutionService ResolutionService
+
+<select @bind="GoalId">
+    @foreach (var goal in _goals)
+    {
+        <option value="@goal.Id">@goal.Name</option>
+    }
+</select>
+
+@code {
+    [Parameter]
+    public int? Year { get; set; }
+    [Parameter]
+    public int GoalId { get; set; }
+
+    private List<Resolution> _resolutions { get; set; } = default!;
+    private List<Goal> _goals = new();
+
+    protected async override System.Threading.Tasks.Task OnInitializedAsync()
+    {
+        var authenticationState = await AuthenticationState.GetAuthenticationStateAsync();
+        var user = authenticationState.User;
+        string? username = user!.Identity!.Name;
+        if (username is not null)
+        {
+            if (Year!=null)
+                _resolutions.Add(ResolutionService.Get(username,Year.Value));
+            else
+                _resolutions = ResolutionService.GetAll(username);
+        }
+
+        foreach (var resolution in _resolutions)
+        {
+            _goals.AddRange(GoalService.GetAll(resolution.Id)!);
+        }
+    }
+}
