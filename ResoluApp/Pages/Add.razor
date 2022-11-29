@@ -1,4 +1,4 @@
-﻿<PageTitle>Year Resolution</PageTitle>
+﻿@inject AuthenticationStateProvider AuthenticationState
 
 <div>
 
@@ -7,7 +7,7 @@
         <div class="card">
             
             <button id="Addbtn" class="btn-circle"><span class="oi oi-plus"> </span> </button>
-            <a href="Resolution" class="btn-circle-child">Resolution</a>
+            <a href="#" class="btn-circle-child">Dream</a>
             <a href="Goal" class="btn-circle-child">Goal</a>
             <a href="Task" class="btn-circle-child">Task</a>
         </div>
@@ -25,3 +25,15 @@
             </li>
     }
     </ul>*@
+
+@code{
+    [Parameter]
+    public string Username { get; set; }
+
+    protected async override System.Threading.Tasks.Task OnInitializedAsync()
+        {
+            var authenticationState = await AuthenticationState.GetAuthenticationStateAsync();
+            var user = authenticationState.User;
+            Username = user!.Identity!.Name!;
+        }
+    }

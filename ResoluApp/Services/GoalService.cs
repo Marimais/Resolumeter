@@ -1,5 +1,6 @@
 ﻿using DataLayer.DataAccess;
 using DataLayer.Models;
+using Microsoft.AspNetCore.Components.Authorization;
 
 namespace ResoluApp.Services
 {
@@ -7,14 +8,19 @@ namespace ResoluApp.Services
     {
         private readonly ResolutionDBContext _dbContext;
         private readonly ILogger _logger;
+        private readonly IResolutionService _resolutionService;
+        private readonly AuthenticationStateProvider _authenticationState;
+        private string _userName=string.Empty;        
 
-        public GoalService(ResolutionDBContext context, ILogger<GoalService> logger)
+        public GoalService(ResolutionDBContext context, ILogger<GoalService> logger, AuthenticationStateProvider AuthenticationState, IResolutionService resolutionService)
         {
             _dbContext = context;
             _logger = logger;
+            _authenticationState = AuthenticationState;
+            _resolutionService = resolutionService;
         }
 
-        public void Create(int resolutionId, String name, String? description, DateTime endDate)
+        public void Create(String name, String? description, DateTime endDate)
         {
             try
             {
@@ -23,7 +29,7 @@ namespace ResoluApp.Services
                     Name = name,
                     Description = description,
                     EndDate = endDate,
-                    ResolutionId = resolutionId
+                    ResolutionId = GetResolution(endDate.Year)
                 };
 
                 _dbContext.Goals!.Add(goal);
@@ -92,6 +98,22 @@ namespace ResoluApp.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, $"Failed to delete goal - {goal.Name}");
+            }
+        }
+
+        private int GetResolution(int year)
+        {            
+            Identify _identifier = new(_authenticationState);
+            _userName = _identifier.GetUserName().Result!;
+            var resolution=_resolutionService.Get(_userName, year);
+            if(resolution is null)
+            {
+                _resolutionService.Create(_userName, year);
+                return GetResolution(year);
+            }
+            else
+            {
+                return resolution.Id;
             }
         }
 

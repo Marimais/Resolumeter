@@ -1,6 +1,5 @@
 ﻿@page "/Goal"
 @attribute [Authorize]
-@inject AuthenticationStateProvider AuthenticationState
 @inject IGoalService GoalService
 
 
@@ -9,20 +8,17 @@
         <input placeholder="Name" @bind="_name" />
         <input placeholder="Description" @bind="_description" />
         <input placeholder="Deadline" type="date" @bind="endDate" />
-        <ResolutionSelector @bind-ResolutionId="_resolutionId"></ResolutionSelector>
         <button class="btn-sign" @onclick="CreateNewGoal">Create</button>
     </div>
 </form>
 
 @code {
-
-    private int _resolutionId { get; set; }
     private string _name { get; set; } = string.Empty;
     private string _description { get; set; } = string.Empty;
     private DateTime endDate { get; set; } = DateTime.Now.Date;
 
     private void CreateNewGoal()
     {
-        GoalService.Create(_resolutionId!, _name, _description, endDate);
+        GoalService.Create(_name, _description, endDate);
     }
 }
