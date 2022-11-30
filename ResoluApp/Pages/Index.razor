@@ -2,11 +2,17 @@
 
     <AuthorizeView>
         <Authorized>
-            <Add></Add>
+            <div class="page-container">
+                <div class="page-top-container">
+                    <Add />
+                    <Definitions />                
+                </div>
+                <GoalsView />
+            </div>            
         </Authorized>
 
         <NotAuthorized>
-          <Login></Login>
+          <Login/>
         </NotAuthorized>
     </AuthorizeView>
 

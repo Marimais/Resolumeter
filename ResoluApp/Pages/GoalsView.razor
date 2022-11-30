@@ -1,5 +1,45 @@
-﻿<h3>GoalsView</h3>
+﻿@inject AuthenticationStateProvider AuthenticationState
+@inject IGoalService GoalService
+@inject IResolutionService ResolutionService
+
+<div class="list-box">
+    <h2>@_year Resolution</h2>
+    <div class="list-container">
+        <div class="list-scroll-container">
+            @foreach (var goal in _goals)
+            {
+                <ul class="list-card">
+                    <li id="goal-name" class="fw-bold"> @goal.Name </li>
+                    <li id="goal-description"> @goal.Description </li>
+                </ul>
+            }
+        </div>
+    </div>
+</div>
 
 @code {
+    private int _goalId;
+    private int _year = DateTime.Now.Year;
+    private string? _userName;
+    private List<Goal> _goals = new();
 
+    protected override async System.Threading.Tasks.Task OnInitializedAsync()
+    {
+        Identify identify = new(AuthenticationState);
+        _userName = await identify.GetUserName();
+        if (_userName is not null)
+        {
+            GetGoals();
+        }
+    }
+
+    private void GetGoals()
+    {
+        _goals.Clear();
+        Resolution resolution = ResolutionService.Get(_userName!, _year);
+        if (resolution != null)
+        {
+            _goals.AddRange(GoalService.GetAll(resolution.Id)!);
+        }
+    }
 }
