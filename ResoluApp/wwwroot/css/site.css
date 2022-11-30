@@ -153,11 +153,11 @@ header {
 
 @-webkit-keyframes golden-glow {
     from {
-        text-shadow: 0 0 0.5em var(--sorta_beige), 0 0 1em var(--sorta_beige), 0 0 1.5em var(--mid-golden), 0 0 2em var(--mid-golden), 0 0 2.5em var(--mid-golden), 0 0 3em var(--mid-golden), 0 0 3.5em var(--mid-golden);
+        text-shadow: 0 0 0.1em var(--sorta_beige), 0 0 0.2em var(--sorta_beige), 0 0 0.3em var(--mid-golden), 0 0 0.4em var(--mid-golden), 0 0 0.5em var(--mid-golden), 0 0 0.6em var(--mid-golden), 0 0 0.7em var(--mid-golden);
     }
 
     to {
-        text-shadow: 0 0 1em var(--sorta_beige), 0 0 1.5em var(--dark-golden), 0 0 2em var(--dark-golden), 0 0 2.5em var(--dark-golden);
+        text-shadow: 0 0 0.2em var(--sorta_beige), 0 0 0.3em var(--dark-golden), 0 0 0.4em var(--dark-golden), 0 0 0.5em var(--dark-golden);
     }
 }
 
@@ -167,7 +167,7 @@ header {
 }
 
     .identity_item:hover {
-        text-shadow: 0 0 2em var(--dark-golden);
+        text-shadow: 0 0 1em var(--sorta_beige);
     }
 
 a:hover {
@@ -583,7 +583,7 @@ a:hover {
         font-size: 2em;
         --x-offset: -0.0625em;
         --y-offset: 0.0625em;
-        --stroke: 0.025em;
+        --stroke: 0.05em;
         --background-color: var(--old-bronze-opec);
         --stroke-color: var(--old-bronze-opec);
         text-shadow: var(--x-offset) var(--y-offset) 0 var(--background-color), calc( var(--x-offset) - var(--stroke) ) calc( var(--y-offset) + var(--stroke) ) 0 var(--stroke-color);
@@ -657,3 +657,4 @@ a:hover {
     flex-direction:column;
     border: none;
 }
+
