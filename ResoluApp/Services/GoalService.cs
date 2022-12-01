@@ -44,11 +44,11 @@ namespace ResoluApp.Services
             }
         }
 
-        public void Edit(int goalId,String name, String? description, DateTime endDate)
+        public void Edit(int goalId,String name, String? description,Status status, DateTime endDate)
         {
             try
             {
-                _dbContext.Goals!.Where(x => x.Id== goalId).ToList().ForEach(x => { x.Name = name;  x.Description = description!; x.EndDate = endDate; });
+                _dbContext.Goals!.Where(x => x.Id== goalId).ToList().ForEach(x => { x.Name = name;  x.Description = description!; x.Status = status;  x.EndDate = endDate; });
                 
                 _dbContext.SaveChanges();
 

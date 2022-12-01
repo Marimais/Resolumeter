@@ -8,11 +8,25 @@
     <button class="btn-sign" @onclick="EditGoalClick">Save</button>
 </form>
 
+@*<div class="list-box">
+    <div class="list-container">
+        <div class="list-scroll-container">*@
+            @foreach (var task in _tasks)
+            {
+                    <TasksView TaskId="@task.Id"></TasksView>
+            }
+@*        </div>
+    </div>
+</div>
+*@
 @code {
     private int _goalId;
     private string _name=string.Empty;
     private string? _description;
+    private Status _status;
     private DateTime _endDate;
+    private List<DataLayer.Models.Task> _tasks;
+
 
 
     [Parameter]
@@ -31,12 +45,14 @@
         {
             _name = goal.Name;
             _description = goal.Description;
+            _status = goal.Status;
             _endDate = goal.EndDate;
+            _tasks = goal.Tasks.ToList();
         }        
     }
 
     private void EditGoalClick()
     {
-        GoalService.Edit(_goalId,_name,_description,_endDate);
+        GoalService.Edit(_goalId,_name,_description,_status,_endDate);
     }
 }
