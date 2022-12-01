@@ -1,38 +1,34 @@
 ﻿@page "/EditGoal/{GoalId}"
+@attribute [Authorize]
 @inject IGoalService GoalService
 
-<form class="input-box">
-    <input placeholder="@_name" @bind="_name" />
-    <input placeholder="@_description" @bind="_description" />
-    <input placeholder="@_endDate.Date" @bind="_endDate" />
-    <button class="btn-sign" @onclick="EditGoalClick">Save</button>
-</form>
-
-@*<div class="list-box">
-    <div class="list-container">
-        <div class="list-scroll-container">*@
-            @foreach (var task in _tasks)
-            {
-                    <TasksView TaskId="@task.Id"></TasksView>
-            }
-@*        </div>
-    </div>
+<div>
+    <form class="input-box edit-input-box">
+        <input placeholder="@_name" @bind="_name" />
+        <input placeholder="@_description" @bind="_description" />
+        <input @bind="_status"/>
+        <input placeholder="@_endDate.Date" @bind="_endDate" />
+        <button class="btn-sign" @onclick="EditGoalClick">Save</button>
+    </form>
+    <TasksView GoalId="@_goalId"></TasksView>
 </div>
-*@
+
+
+
+
 @code {
     private int _goalId;
     private string _name=string.Empty;
     private string? _description;
     private Status _status;
     private DateTime _endDate;
-    private List<DataLayer.Models.Task> _tasks;
 
 
 
     [Parameter]
     public string GoalId { get; set; }    
 
-    protected override async System.Threading.Tasks.Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         GetGoal();
     }
@@ -47,7 +43,6 @@
             _description = goal.Description;
             _status = goal.Status;
             _endDate = goal.EndDate;
-            _tasks = goal.Tasks.ToList();
         }        
     }
 

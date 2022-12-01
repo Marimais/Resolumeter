@@ -460,6 +460,16 @@ a:hover {
         font-size: 1.8em;
     }
 
+.edit-input-box{
+    position: absolute;
+    left:50%;
+    top:28%;
+    padding: 1em;
+    padding-left:5em;
+    padding-right:5em;
+    padding-top:3em;
+}
+
 .option-input {
     position: relative;
     height: 1em;
@@ -547,11 +557,19 @@ a:hover {
     border: none;
     padding: 3em;
 }
+
     .list-box h2 {
         color: var(--sorta_beige);
         font-size: 3em;
         text-shadow: 0 0 0.1em var(--old-bronze), 0 0 0.3em var(--old-bronze), 0 0 0.5em var(--old-bronze), 0 0 0.5em var(--old-bronze);
     }
+
+.edit-list-box{
+    position:absolute;
+    top: 53%;
+    left:0;
+    height:50%;
+}
 
 .list-container {
     width:100%;
@@ -614,7 +632,7 @@ a:hover {
     .list-card ul,li{
         list-style-type: none;
     }
-    .list-card #goal-name {
+    .list-card #goal-name,#task-name {
         font-size: 2em;
         --x-offset: -0.0625em;
         --y-offset: 0.0625em;
@@ -624,10 +642,14 @@ a:hover {
         text-shadow: var(--x-offset) var(--y-offset) 0 var(--background-color), calc( var(--x-offset) - var(--stroke) ) calc( var(--y-offset) + var(--stroke) ) 0 var(--stroke-color);
         margin-bottom:1em; 
         }
-    .list-card #goal-description {
+    .list-card #goal-description, #task-description {
         font-size: 1em;
     }
-    .list-card #goal-enddate {
+    .list-card #goal-status, #task-status {
+        font-size: 1em;
+        color:var(--redish);
+    }
+    .list-card #task-start-date, #task-end-date {
         font-size: 1em;
     }
 

@@ -1,0 +1,48 @@
+﻿@using Task=DataLayer.Models.Task
+@inject AuthenticationStateProvider AuthenticationState
+@inject IGoalService GoalService
+@inject ITaskService TaskService
+
+
+<div class="list-box edit-list-box">
+    <h2>Tasks</h2>
+    <div class="list-container">
+        <div class="list-scroll-container">            
+            @foreach (var task in _tasks!)
+            {
+                <a href="">
+                    <ul class="list-card">
+                        <li id="task-name">@task.Name</li>
+                        <li id="task-description">@task.Description</li>
+                        <li id="task-status">Status: @task.Status</li>
+                        <li id="task-start-date">Start: @task.StartDate.ToShortDateString()</li>
+                        <li id="task-end-date">End: @task.EndDate.ToShortDateString()</li>
+                    </ul>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+@code {
+
+    private List<Task>? _tasks;
+
+    [Parameter]
+    public int GoalId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        GetTasks();
+    }
+
+    private void GetTasks()
+    {
+        _tasks = TaskService.GetAll(GoalId);
+    }
+
+
+}
