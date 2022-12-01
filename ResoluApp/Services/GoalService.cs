@@ -1,6 +1,7 @@
 ﻿using DataLayer.DataAccess;
 using DataLayer.Models;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace ResoluApp.Services
 {
@@ -40,6 +41,22 @@ namespace ResoluApp.Services
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Failed to create Goal.");
+            }
+        }
+
+        public void Edit(int goalId,String name, String description, DateTime endDate)
+        {
+            try
+            {
+                _dbContext.Goals!.Where(x => x.Id== goalId).ToList().ForEach(x => { x.Name = name;  x.Description = description; x.EndDate = endDate; });
+                
+                _dbContext.SaveChanges();
+
+                _logger.LogInformation($"Goal has been edited - '{1}'", goalId);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to update the goal.");
             }
         }
 
