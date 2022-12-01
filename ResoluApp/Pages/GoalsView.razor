@@ -8,10 +8,12 @@
         <div class="list-scroll-container">
             @foreach (var goal in _goals)
             {
-                <ul class="list-card">
-                    <li id="goal-name" class="fw-bold"> @goal.Name </li>
-                    <li id="goal-description"> @goal.Description </li>
-                </ul>
+                <a href="EditGoal/@goal.Id">
+                    <ul class="list-card">
+                        <li id="goal-name" class="fw-bold"> @goal.Name </li>
+                        <li id="goal-description"> @goal.Description </li>
+                    </ul>
+                </a>                
             }
         </div>
     </div>

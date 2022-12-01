@@ -1,0 +1,42 @@
+﻿@page "/EditGoal/{GoalId}"
+@inject IGoalService GoalService
+
+<form class="input-box">
+    <input placeholder="@_name" @bind="_name" />
+    <input placeholder="@_description" @bind="_description" />
+    <input placeholder="@_endDate.Date" @bind="_endDate" />
+    <button class="btn-sign" @onclick="EditGoalClick">Save</button>
+</form>
+
+@code {
+    private int _goalId;
+    private string _name=string.Empty;
+    private string? _description;
+    private DateTime _endDate;
+
+
+    [Parameter]
+    public string GoalId { get; set; }    
+
+    protected override async System.Threading.Tasks.Task OnInitializedAsync()
+    {
+        GetGoal();
+    }
+
+    private void GetGoal()
+    {
+        _goalId = Convert.ToInt32(GoalId);
+        var goal = GoalService.Get(_goalId);
+        if(goal is not null)
+        {
+            _name = goal.Name;
+            _description = goal.Description;
+            _endDate = goal.EndDate;
+        }        
+    }
+
+    private void EditGoalClick()
+    {
+        GoalService.Edit(_goalId,_name,_description,_endDate);
+    }
+}
