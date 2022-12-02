@@ -7,7 +7,7 @@
         <input placeholder="@_name" @bind="_name" />
         <input placeholder="@_description" @bind="_description" />
         <input @bind="_status"/>
-        <input placeholder="@_endDate.Date" @bind="_endDate" />
+        <input placeholder="@_endDate.Date" @bind="_endDate" type="date" />
         <button class="btn-sign" @onclick="EditGoalClick">Save</button>
     </form>
     <TasksView GoalId="@_goalId"></TasksView>
