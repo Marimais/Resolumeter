@@ -5,7 +5,7 @@
 <form class="input-box">
     <input placeholder="@_name" @bind="_name"/>
     <input placeholder="@_description" @bind="_description"/>
-    <input placeholder="@_status" @bind="_status" />
+    <StatusSelector @bind-Status="_status"/>
     <input placeholder="@_startDate" @bind="_startDate" type="date" />
     <input placeholder="@_endDate" @bind="_endDate" type="date" />
     <button class="btn-sign" @onclick="UpdateTask">Save</button>

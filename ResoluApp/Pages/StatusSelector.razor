@@ -6,6 +6,21 @@
 </select>
 
 @code {
+    private Status _status;
+
     [Parameter]
-    public DataLayer.Models.Status Status { get; set; }
+    public DataLayer.Models.Status Status 
+    { 
+        get=>_status; 
+        set
+        {
+            if (_status == value) return;
+            _status=value;
+            StatusChanged.InvokeAsync(_status);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<Status> StatusChanged { get;set; }
+
 }

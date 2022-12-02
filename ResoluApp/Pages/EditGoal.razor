@@ -6,14 +6,12 @@
     <form class="input-box edit-input-box">
         <input placeholder="@_name" @bind="_name" />
         <input placeholder="@_description" @bind="_description" />
-        <input @bind="_status"/>
+        <StatusSelector @bind-Status="_status"></StatusSelector>
         <input placeholder="@_endDate.Date" @bind="_endDate" type="date" />
         <button class="btn-sign" @onclick="EditGoalClick">Save</button>
     </form>
     <TasksView GoalId="@_goalId"></TasksView>
 </div>
-
-
 
 
 @code {
@@ -22,8 +20,6 @@
     private string? _description;
     private Status _status;
     private DateTime _endDate;
-
-
 
     [Parameter]
     public string GoalId { get; set; }    
