@@ -82,6 +82,22 @@ namespace ResoluApp.Services
             }
         }
 
+        public void Edit(int taskId, string name, Status status, string? description, DateTime startDate, DateTime endDate)
+        {
+            
+            try
+            {
+                _context.Tasks!.Where(t=>t.Id==taskId).ToList().ForEach(t => { t.Name = name; t.Description=description;t.Status = status; t.StartDate = startDate; t.EndDate=endDate; });
+                _context.SaveChanges();
+
+                _logger.LogInformation($"Updated Task - {taskId}.");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Could not update task.");
+            }
+        }
+
         public void Delete(Task task)
         {
             try
