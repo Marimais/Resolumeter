@@ -746,3 +746,19 @@ div.gold-frame-front {
     flex-direction:column;
     border: none;
 }
+
+.btn-delete{
+    position: absolute;
+    top: 1.5%;
+    right:10%;
+    width:2em;
+    height:2em;
+    border-radius:50%;
+    color: var(--mid-grey);
+    font-size:2em;
+    background-color: indianred;
+    border:none;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}

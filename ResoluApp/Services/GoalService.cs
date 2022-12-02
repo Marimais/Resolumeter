@@ -104,17 +104,18 @@ namespace ResoluApp.Services
             return goal;
         }
 
-        public void Delete(Goal goal)
+        public void Delete(int id)
         {
             try
             {
-                _dbContext.Goals!.Remove(goal);
+                var goal = _dbContext.Goals!.Where(g => g.Id == id).SingleOrDefault();
+                _dbContext.Goals!.Remove(goal!);
                 _dbContext.SaveChanges();
-                _logger.LogInformation($"Goal {goal.Name} has been removed from databse;");
+                _logger.LogInformation($"Goal has been removed from databse;");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Failed to delete goal - {goal.Name}");
+                _logger.LogError(ex, $"Failed to delete the goal.");
             }
         }
 

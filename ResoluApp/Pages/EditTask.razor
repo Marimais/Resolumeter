@@ -8,8 +8,13 @@
     <StatusSelector @bind-Status="_status"/>
     <input placeholder="@_startDate" @bind="_startDate" type="date" />
     <input placeholder="@_endDate" @bind="_endDate" type="date" />
-    <button class="btn-sign" @onclick="UpdateTask">Save</button>
+    <button class="btn-sign" @onclick="UpdateTaskOnClick">Save</button>    
 </form>
+<a href="EditGoal/@_goalID">
+    <button class="btn-delete" @onclick="DeleteTaskOnCLick">
+        <i class="oi oi-trash" />
+    </button>
+</a>
 
 @code {
     private int _taskId;
@@ -18,6 +23,7 @@
     private Status _status;
     private DateTime _startDate;
     private DateTime _endDate;
+    private int _goalID;
 
     [Parameter]
     public string TaskId { get; set; }
@@ -38,11 +44,17 @@
             _status = task.Status;
             _startDate = task.StartDate;
             _endDate = task.EndDate;
+            _goalID = task.Goal.Id;
         }        
     }
 
-    private void UpdateTask()
+    private void UpdateTaskOnClick()
     {
         TaskService.Edit(_taskId, _name, _status, _description, _startDate, _endDate);
+    }
+
+    private void DeleteTaskOnCLick()
+    {
+        TaskService.Delete(_taskId);
     }
 }

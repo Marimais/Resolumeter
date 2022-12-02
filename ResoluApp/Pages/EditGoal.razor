@@ -8,21 +8,26 @@
         <input placeholder="@_description" @bind="_description" />
         <StatusSelector @bind-Status="_status"></StatusSelector>
         <input placeholder="@_endDate.Date" @bind="_endDate" type="date" />
-        <button class="btn-sign" @onclick="EditGoalClick">Save</button>
+        <button class="btn-sign" @onclick="EditGoalOnClick">Save</button>
     </form>
+    <a href="/">
+        <button class="btn-delete" @onclick="DeleteGoalOnClick">
+            <i class="oi oi-trash"></i>
+        </button>
+    </a>
     <TasksView GoalId="@_goalId"></TasksView>
 </div>
 
 
 @code {
     private int _goalId;
-    private string _name=string.Empty;
+    private string _name = string.Empty;
     private string? _description;
     private Status _status;
     private DateTime _endDate;
 
     [Parameter]
-    public string GoalId { get; set; }    
+    public string GoalId { get; set; }
 
     protected override void OnInitialized()
     {
@@ -33,17 +38,23 @@
     {
         _goalId = Convert.ToInt32(GoalId);
         var goal = GoalService.Get(_goalId);
-        if(goal is not null)
+        if (goal is not null)
         {
             _name = goal.Name;
             _description = goal.Description;
             _status = goal.Status;
             _endDate = goal.EndDate;
-        }        
+        }
     }
 
-    private void EditGoalClick()
+    private void EditGoalOnClick()
     {
-        GoalService.Edit(_goalId,_name,_description,_status,_endDate);
+        GoalService.Edit(_goalId, _name, _description, _status, _endDate);
     }
+
+    private void DeleteGoalOnClick()
+    {
+        GoalService.Delete(_goalId);
+    }
+
 }

@@ -98,18 +98,19 @@ namespace ResoluApp.Services
             }
         }
 
-        public void Delete(Task task)
+        public void Delete(int id)
         {
             try
             {
-                _context.Tasks!.Remove(task);
+                var task= _context.Tasks!.Where(t=>t.Id==id).SingleOrDefault();  
+                _context.Tasks!.Remove(task!);
                 _context.SaveChanges();
 
-                _logger.LogInformation($"Task - {task.Name} has been removed from the Database.");
+                _logger.LogInformation($"Task - has been removed from the Database.");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Could not remove Task - {task.Name} from the Database");
+                _logger.LogError(ex, $"Could not remove Task from the Database");
             }
         }
 
