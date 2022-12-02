@@ -26,7 +26,7 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     height: 100%;
     width: 100%;
-    background: var(--dark-grey);
+    background: var(--mid-grey);
     background-repeat: no-repeat;
 }
 
@@ -709,7 +709,7 @@ a:hover {
         letter-spacing: 1px;
         -webkit-text-stroke: 4px transparent;
     }
-div.bag {
+div.gold-frame-back {
     background-image: repeating-linear-gradient( 105deg, var(--gold) 0%, var(--dark-gold-shadow) 5%, var(--gold) 12%);
     color: transparent;
     filter: drop-shadow(0.01em 0.15em 0.15em black);
@@ -717,7 +717,7 @@ div.bag {
     transform-origin: top;
 }
 
-div.fg {
+div.gold-frame-front {
     background-image: repeating-linear-gradient( 5deg, var(--gold) 0%, var(--light-gold-shadow) 23%, var(--gold) 31%);
     color: #1e2127;
     transform: scale(1);

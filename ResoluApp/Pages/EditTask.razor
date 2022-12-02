@@ -1,0 +1,48 @@
+﻿@page "/Edittask/{TaskId}"
+@attribute [Authorize]
+@inject ITaskService TaskService;
+
+<form class="input-box">
+    <input placeholder="@_name" @bind="_name"/>
+    <input placeholder="@_description" @bind="_description"/>
+    <input placeholder="@_status" @bind="_status" />
+    <input placeholder="@_startDate" @bind="_startDate" type="date" />
+    <input placeholder="@_endDate" @bind="_endDate" type="date" />
+    <button class="btn-sign" @onclick="UpdateTask">Save</button>
+</form>
+
+@code {
+    private int _taskId;
+    private string _name;
+    private string? _description;
+    private Status _status;
+    private DateTime _startDate;
+    private DateTime _endDate;
+
+    [Parameter]
+    public string TaskId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        _taskId = Convert.ToInt32(TaskId);
+        GetTask();
+    }
+
+    private void GetTask()
+    {
+        var task = TaskService.Get(_taskId);
+        if(task is not null)
+        {
+            _name = task.Name;
+            _description = task.Description;
+            _status = task.Status;
+            _startDate = task.StartDate;
+            _endDate = task.EndDate;
+        }        
+    }
+
+    private void UpdateTask()
+    {
+        TaskService.Edit(_taskId, _name, _status, _description, _startDate, _endDate);
+    }
+}

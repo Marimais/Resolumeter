@@ -10,7 +10,7 @@
         <div class="list-scroll-container">            
             @foreach (var task in _tasks!)
             {
-                <a href="">
+                <a href="Edittask/@task.Id">
                     <ul class="list-card">
                         <li id="task-name">@task.Name</li>
                         <li id="task-description">@task.Description</li>
