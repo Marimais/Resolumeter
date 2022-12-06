@@ -1,0 +1,24 @@
+﻿@page "/CreateDream"
+@attribute [Authorize]
+@inject IDreamService DreamService
+
+
+<form class="input-box">
+    <input placeholder="Name" @bind="_name"/>
+    <input placeholder="Description" @bind="_description" />
+    <button class="btn-sign" @onclick="CreateDreamOnClick">Create</button>
+</form>
+
+@code {
+    private string _name=string.Empty;
+    private string? _description;
+
+
+    private void CreateDreamOnClick()
+    {
+        if(_name.Length>0)
+        {
+            DreamService.Create(_name, _description);
+        }
+    }
+}

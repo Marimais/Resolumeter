@@ -2,7 +2,6 @@ using DataLayer.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using ResoluApp.Services;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Components.Authorization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -43,6 +42,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
+builder.Services.AddScoped<IDreamService, DreamService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IGoalService, GoalService>();
 builder.Services.AddScoped<IResolutionService, ResolutionService>();

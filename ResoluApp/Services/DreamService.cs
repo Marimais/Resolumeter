@@ -6,11 +6,11 @@ namespace ResoluApp.Services
 {
     public class DreamService : IDreamService
     {
-        private ResolutionDBContext _context;
-        ILogger _logger;
-        AuthenticationStateProvider _authenticationStateProvider;
+        private readonly ResolutionDBContext _context;
+        private readonly ILogger _logger;
+        private readonly AuthenticationStateProvider _authenticationStateProvider;
 
-        public DreamService(ResolutionDBContext context, ILogger logger, AuthenticationStateProvider authenticationStateProvider)
+        public DreamService(ResolutionDBContext context, ILogger<DreamService> logger, AuthenticationStateProvider authenticationStateProvider)
         {
             _context = context;
             _logger = logger;
