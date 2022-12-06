@@ -8,13 +8,15 @@
         <input placeholder="@_description" @bind="_description" />
         <StatusSelector @bind-Status="_status"></StatusSelector>
         <input placeholder="@_endDate.Date" @bind="_endDate" type="date" />
-        <button class="btn-sign" @onclick="EditGoalOnClick">Save</button>
+        <a href="/CreateTask/@GoalId" class="btn-gold">Add new task</a>
+        <button class="btn-sign" @onclick="EditGoalOnClick">Save</button>        
     </form>
     <a href="/">
         <button class="btn-delete" @onclick="DeleteGoalOnClick">
             <i class="oi oi-trash"></i>
         </button>
     </a>
+    
     <TasksView GoalId="@_goalId"></TasksView>
 </div>
 

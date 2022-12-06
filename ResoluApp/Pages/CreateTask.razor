@@ -1,4 +1,5 @@
 ﻿@page "/CreateTask"
+@page "/CreateTask/{GoalId}"
 @attribute [Authorize]
 @inject ITaskService TaskService
 
@@ -21,6 +22,9 @@
     private DateTime _startDate = DateTime.Now.Date;
     private DateTime _endDate = DateTime.Now.Date;
     private int _year = DateTime.Now.Year;
+
+    [Parameter]
+    public string GoalId { get; set; }
 
     public DateTime StartDate
     {
@@ -50,4 +54,13 @@
             TaskService.Create(_goalId, _taskName, _description, _startDate, _endDate);
         }
     }
+
+    protected override void OnInitialized()
+    {
+        if(GoalId is not null)
+        {
+            _goalId = Convert.ToInt32(GoalId);
+        }
+    }
+
 }
